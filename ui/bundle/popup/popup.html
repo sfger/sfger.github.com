@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Popup</title>
+<style type="text/css">
+    *{ padding:0;margin:0; }
+	#page { height:1000px; }
+    #login-container{ display:none; }
+    #login-block{ width:400px; height:250px; border-radius:5px; }
+    #login-block #close{ display:block; color:red; background:green; text-decoration:none; float:right; padding:1px 3px; margin:3px; border-radius:3px; }
+    #login-block #close:hover { background:yellow; }
+</style>
+<script type="text/javascript">
+window.onload = function(){
+    var css1compat	= document.compatMode === "CSS1Compat";
+	var scrollTop	= 0;
+	var real_pop	= false;
+	var is_show		= false;
+	var ie_doc7		= document.documentMode===7;
+	var isIE		= /MSIE/.exec(navigator.userAgent);
+	var container	= document.getElementById('login-container');
+	var pop_box		= document.getElementById('login-block');
+	var pop_close	= document.getElementById('close');
+	var pop_btn		= document.getElementById('sfg');
+	var	body		= document.body;
+	if( !isIE ){
+		var evt = document.createEvent("MouseEvents");
+		evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+		window.dispatchEvent(evt);
+	}
+	var key_trans = function(key){
+		return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
+	};
+
+	var style = {
+		'get' : document.defaultView ? function(el, style){
+			return document.defaultView.getComputedStyle(el, null).getPropertyValue(style);
+		} : function(el,style){
+			return el.currentStyle[key_trans(style)]=='medium' ? 0 : el.currentStyle[key_trans(style)];
+		},
+		'set' : function(el, css){
+			for(var key in css){
+				el.style[key_trans(key)] = css[key];
+			}
+		}
+	};
+	var popup = function(){
+		if(!real_pop){
+			return false;
+		}else{
+			real_pop = (is_show = true);
+		}
+        container.style.display = 'block';
+		var winHeight = css1compat ? document.documentElement['clientHeight'] : body.clientHeight;
+		var winWidth  = css1compat ? document.documentElement['clientWidth'] : body.clientWidth;
+        style.set(container, {
+            'z-index':'9999',
+            'position':'absolute',
+            'top': scrollTop + 'px',
+            'left':'0px',
+            'width':winWidth+'px',
+            'height':winHeight+'px',
+            'opacity':'0.6',
+            'filter':'opacity(60)',
+            'filter':'alpha(opacity=80)',
+            'background':'#ccc'
+        });
+        style.set(pop_box, {
+			'background':'purple',
+            'position':'absolute',
+            'top':(winHeight-parseInt(style.get(pop_box, 'height')))/4 + 'px',
+            'left':(winWidth-parseInt(style.get(pop_box, 'width')))/2 + 'px',
+            'margin':'auto'
+        });
+	};
+
+	window.onresize = function(){
+		if(!is_show) return false;
+		style.set(body, {'overflow':''});
+		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
+		style.set(body, {'overflow':'hidden'});
+		var winWidth  = css1compat ? document.documentElement['clientWidth'] : body.clientWidth;
+		var winHeight = css1compat ? document.documentElement['clientHeight'] : body.clientHeight;
+        style.set(container, {
+            'top':scrollTop + 'px',
+            'width':winWidth + 'px',
+            'height':winHeight + 'px'
+        });
+        style.set(pop_box, {
+            'top':(winHeight-parseInt(style.get(pop_box, 'height')))/4 + 'px',
+            'left':(winWidth-parseInt(style.get(pop_box, 'width')))/2 + 'px'
+        });
+	};
+	pop_btn.onclick = function(){
+		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
+		style.set(body, {'overflow':'hidden'});
+		if(ie_doc7) body.parentNode.style.overflow = 'hidden';
+		real_pop = true;
+		popup();
+    };
+    pop_close.onclick = function(){
+		is_show = false;
+        container.style.display = 'none';
+		style.set(body, {'overflow':''});
+		if(!css1compat) body.scrollTop = scrollTop;
+		else document.documentElement.scrollTop = scrollTop;
+		if(ie_doc7) body.parentNode.style.overflow = '';
+    };
+};
+</script>
+</head>
+<body>
+	<div id="page">
+		<a id="sfg" href="javascript:;">popup</a>
+		<div id="login-container">
+			<div id="login-block">
+				<a href="javascript:;" id="close">X</a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

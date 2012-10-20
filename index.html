@@ -1,69 +1,106 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>Menu</title>
+    <meta http-equiv="Content-language" content="zh-CN" />
+    <style type="text/css" media="all">
+        * { padding:0; margin:0; }
+		body { overflow:hidden; }
+		#top { height:68px; _height:70px; border:1px solid #2cb0c7; }
+		#left { float:left; width:210px; }
+		#right { overflow:hidden; }
+		#main { width:100%; _margin-left:-3px; }
+		#resizebar { border-right:1px #2cb0c7 solid; float:right; width:3px; _width:4px; height:100%; cursor:e-resize; background:white; }
+        #menu { float:left; overflow:hidden; border:1px solid #2cb0c7; }
+        #menu li ul { height:auto; overflow:hidden; overflow-y:auto; display:none; font-weight:normal; }
+		#menu li { overflow:hidden; height:22px; _height:23px; line-height:22px; margin:0; list-style:none; padding:0 0 1px 0; }
+		#menu li li { padding:1px 0 0 0; height:auto; }
+        #menu li .container { color:white; cursor:pointer; font-size:18px; height:22px; line-height:23px\0; display:block; background:#2cb0c7; padding-left:9px; }
+        #menu li li .container { color:#ff4400; font-size:16px; padding-left:18px; }
+		#menu li li a { color:blue; height:22px; text-decoration:none; display:block; font-size:14px; padding-left:18px; background:none; }
+		#menu li li li a { padding-left:27px; }
+		#menu li li .container, #menu li li a { background:white; }
+		#menu li li div:hover, #menu li li a:hover, #menu li li .current { background:#d2ffff; }
+    </style>
+</head>
+<body>
+<div id="page">
+	<div id="top">
+	</div>
+	<div>
+		<div id="left">
+			<div id="resizebar"></div>
+			<ul id="menu">
+				<li>
+					<div class="container">test</div>
+					<ul>
+						<li> <a href="http://www.baidu.com">baidu</a> </li>
+						<li> <a href="http://www.google.com">google</a> </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<div id="right">
+			<iframe id="main" src="" frameborder="0"></iframe>
+		</div>
+	</div>
+</div><!-- Page end! -->
+<script type="text/javascript" src="./ui/js/tree.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+var data = {
+	'Web1':{
+		search:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs:'http://www.cnblogs.com',
+		'popup':'./ui/bundle/popup/popup.html'
+	},
+	'Web2':{
+		search:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs:'http://www.cnblogs.com',
+		'163':'http://163.com'
+	},
+	'Web3':{
+		search:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs:'http://www.cnblogs.com',
+		'163':'http://163.com'
+	},
+	'Web4':{
+		search1:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs1:'http://www.cnblogs.com',
+		'163a':'http://163.com',
+		search2:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs2:'http://www.cnblogs.com',
+		'163b':'http://163.com',
+		search3:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs3:'http://www.cnblogs.com',
+		'163c':'http://163.com',
+		search4:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs4:'http://www.cnblogs.com',
+		'163d':'http://163.com',
+		search5:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs5:'http://www.cnblogs.com',
+		'163e':'http://163.com',
+		search6:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs6:'http://www.cnblogs.com',
+		'163f':'http://163.com',
+		search7:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs7:'http://www.cnblogs.com',
+		'163g':'http://163.com',
+		search8:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs8:'http://www.cnblogs.com',
+		'163h':'http://163.com',
+		search9:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
+		conblogs9:'http://www.cnblogs.com',
+		'163k':'http://163.com'
+	}
+};
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Sfger.github.com : " />
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Sfger.github.com</title>
-  </head>
-
-  <body>
-
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/sfger">View on GitHub</a>
-
-          <h1 id="project_title">Sfger.github.com</h1>
-          <h2 id="project_tagline"></h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>Welcome to GitHub Pages.</h3>
-
-<p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
-
-<pre><code>$ cd your_repo_root/repo_name
-$ git fetch origin
-$ git checkout gh-pages
-</code></pre>
-
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
-
-<h3>Designer Templates</h3>
-
-<p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
-
-<h3>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
-
-  </body>
+var toper = document.getElementById("top");
+var left  = document.getElementById("left");
+var main  = document.getElementById("main");
+tree(toper, left, main, data);
+//]]>
+</script>
+</body>
 </html>
