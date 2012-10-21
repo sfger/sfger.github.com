@@ -1,29 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Menu</title>
-    <meta http-equiv="Content-language" content="zh-CN" />
-    <style type="text/css" media="all">
-        * { padding:0; margin:0; }
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Menu</title>
+	<meta http-equiv="Content-language" content="zh-CN" />
+	<style type="text/css" media="all">
+		* { padding:0; margin:0; }
 		body { overflow:hidden; }
 		#top { height:68px; _height:70px; border:1px solid #2cb0c7; }
 		#left { float:left; width:210px; }
 		#right { overflow:hidden; }
 		#main { width:100%; _margin-left:-3px; }
 		#resizebar { border-right:1px #2cb0c7 solid; float:right; width:3px; _width:4px; height:100%; cursor:e-resize; background:white; }
-        #menu { float:left; overflow:hidden; border:1px solid #2cb0c7; }
-        #menu li ul { height:auto; overflow:hidden; overflow-y:auto; display:none; font-weight:normal; }
+		#menu { float:left; overflow:hidden; border:1px solid #2cb0c7; }
+		#menu li ul { height:auto; overflow:hidden; overflow-y:auto; display:none; font-weight:normal; }
 		#menu li { overflow:hidden; height:25px; _height:26px; line-height:25px; margin:0; list-style:none; padding:0 0 1px 0; }
 		#menu li li { padding:1px 0 0 0; height:auto; }
-        #menu li .container { color:white; cursor:pointer; font-size:18px; height:25px; line-height:26px\0; display:block; background:#2cb0c7; padding-left:5px; }
-        #menu li li .container { color:#ff4400; font-size:13px; padding-left:10px; }
+		#menu li .container { color:white; cursor:pointer; font-size:18px; height:25px; line-height:26px\0; display:block; background:#2cb0c7; padding-left:5px; }
+		#menu li li .container { color:#ff4400; font-size:13px; padding-left:10px; }
 		#menu li li a { color:blue; height:25px; text-decoration:none; display:block; font-size:13px; padding-left:10px; background:none; }
 		#menu li li li .container, #menu li li li a { padding-left:20px; }
 		#menu li li li li .container, #menu li li li li a { padding-left:30px; }
 		#menu li li .container, #menu li li a { background:white; }
 		#menu li li div:hover, #menu li li a:hover, #menu li li .current { background:#d2ffff; }
-    </style>
+	</style>
 </head>
 <body>
 <div id="page">
@@ -61,15 +61,62 @@ var data = {
 		name: '书签',
 		data:{
 			search:{
-				name: '搜索',
+				name: '搜索、百科与词典',
 				data:{
 					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
 					soso:{ name:'SoSo', url:'http://www.soso.com', item:1 },
-					google:{ name:'Google', url:'http://www.google.com', item:1 }
+					google:{ name:'Google', url:'http://www.google.com', item:1 },
+					GouGou:{ name:'GouGou', url:'http://www.gougou.com/', item:1 },
+					Wikipedia:{ name:'Wikipedia', url:'http://www.wikipedia.org/', item:1 }
 				}
 			},
-			conblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
-			'163':{ name: '网易', url: 'http://www.163.com', item: 1 }
+			Video:{
+				name: '视频',
+				data:{
+					Youku:{ name:'优酷', url:'http://www.youku.com', item:1 },
+					PPS:{ name:'PPS', url:'http://www.pps.tv', item:1 },
+					Tudou:{ name:'土豆', url:'http://www.tudou.com/', item:1 },
+					'163':{ name:'网易视频', url:'http://v.163.com/', item:1 },
+					Xunlei:{ name:'迅雷视频', url:'http://www.xunlei.com/', item:1 }
+				}
+			},
+			WebSite:{
+				name: '门户、新闻与社区',
+				data:{
+					Youku:{ name:'网易', url:'http://www.163.com', item:1 },
+					Sina:{ name:'新浪', url:'http://www.sina.com', item:1 },
+					sohu:{ name:'搜狐', url:'http://www.sohu.com/', item:1 },
+					QQ:{ name:'腾讯', url:'http://www.qq.com/', item:1 },
+					Xinhua:{ name:'新华网', url:'http://www.xinhuanet.com/', item:1 }
+				}
+			},
+			Blog:{
+				name: '博客',
+				data:{
+					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
+					CoolShell:{ name:'CoolShell', url:'http://www.coolshell.com', item:1 },
+					CoolShell:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
+					Zihou:{ name:'子猴博客', url:'http://www.zihou.me', item:1 },
+					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
+					'Typeof':{ name:'Typeof', url:'http://typeof.net', item:1 },
+					'Heroin':{ name:'Heroin', url:'http://heroin.net', item:1 },
+					CSSASS:{ name:'CSSASS', url:'http://www.cssass.com/blog/', item:1 },
+					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
+					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
+					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 }
+				}
+			},
+			Blog:{
+				name: '软件',
+				data:{
+					Vim:{ name:'Vim', url:'http://www.vim.org', item:1 },
+					Gimp:{ name:'GIMP', url:'http://www.gimp.org', item:1 },
+					PHP:{ name:'PHP', url:'http://www.php.net', item:1 },
+					Fiddler:{ name:'Fiddler', url:'http://www.fiddler2.com/fiddler2/', item:1 },
+					Driver:{ name:'驱动精灵', url:'http://www.drivergenius.com', item:1 }
+				}
+			}
 		}
 	}
 };
