@@ -61,18 +61,18 @@
 			var inner_subs = document.createElement('ul');
 			inner_subs.style.display = 'none';
 			for(var i in sub){
-				if((typeof sub[i])==='object'){
-					inner_subs.appendChild( create_outer_menu(i, sub[i]) );
+				if( !sub[i].item ){
+					inner_subs.appendChild( create_outer_menu(sub[i].name, sub[i].data) );
 				}else{
-					inner_subs.appendChild( create_sub_item(i, sub[i]) );
+					inner_subs.appendChild( create_sub_item(sub[i].name, sub[i].url) );
 				}
 			}
 			root.appendChild(inner_subs);
 			return root;
 		};
-		for(var name in data){
-			if((typeof data[name])==='object'){
-				menu.appendChild( create_outer_menu(name, data[name]) );
+		for(var i in data){
+			if(!data[i].item){
+				menu.appendChild( create_outer_menu(data[i].name, data[i].data) );
 			}
 		}
 	};

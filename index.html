@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Menu</title>
     <meta http-equiv="Content-language" content="zh-CN" />
     <style type="text/css" media="all">
@@ -14,12 +14,13 @@
 		#resizebar { border-right:1px #2cb0c7 solid; float:right; width:3px; _width:4px; height:100%; cursor:e-resize; background:white; }
         #menu { float:left; overflow:hidden; border:1px solid #2cb0c7; }
         #menu li ul { height:auto; overflow:hidden; overflow-y:auto; display:none; font-weight:normal; }
-		#menu li { overflow:hidden; height:22px; _height:23px; line-height:22px; margin:0; list-style:none; padding:0 0 1px 0; }
+		#menu li { overflow:hidden; height:25px; _height:26px; line-height:25px; margin:0; list-style:none; padding:0 0 1px 0; }
 		#menu li li { padding:1px 0 0 0; height:auto; }
-        #menu li .container { color:white; cursor:pointer; font-size:18px; height:22px; line-height:23px\0; display:block; background:#2cb0c7; padding-left:9px; }
-        #menu li li .container { color:#ff4400; font-size:16px; padding-left:18px; }
-		#menu li li a { color:blue; height:22px; text-decoration:none; display:block; font-size:14px; padding-left:18px; background:none; }
-		#menu li li li a { padding-left:27px; }
+        #menu li .container { color:white; cursor:pointer; font-size:18px; height:25px; line-height:26px\0; display:block; background:#2cb0c7; padding-left:5px; }
+        #menu li li .container { color:#ff4400; font-size:13px; padding-left:10px; }
+		#menu li li a { color:blue; height:25px; text-decoration:none; display:block; font-size:13px; padding-left:10px; background:none; }
+		#menu li li li .container, #menu li li li a { padding-left:20px; }
+		#menu li li li li .container, #menu li li li li a { padding-left:30px; }
 		#menu li li .container, #menu li li a { background:white; }
 		#menu li li div:hover, #menu li li a:hover, #menu li li .current { background:#d2ffff; }
     </style>
@@ -50,47 +51,26 @@
 <script type="text/javascript">
 //<![CDATA[
 var data = {
-	'UI':{
-		'popup':'./ui/bundle/popup/popup.html'
+	UI:{
+		name:'UI',
+		data:{
+			popup:{ name: 'popup', url: './ui/bundle/popup/popup.html', item: 1 }
+		}
 	},
-	'Web2':{
-		search:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs:'http://www.cnblogs.com',
-		'163':'http://163.com'
-	},
-	'Web3':{
-		search:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs:'http://www.cnblogs.com',
-		'163':'http://163.com'
-	},
-	'Web4':{
-		search1:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs1:'http://www.cnblogs.com',
-		'163a':'http://163.com',
-		search2:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs2:'http://www.cnblogs.com',
-		'163b':'http://163.com',
-		search3:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs3:'http://www.cnblogs.com',
-		'163c':'http://163.com',
-		search4:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs4:'http://www.cnblogs.com',
-		'163d':'http://163.com',
-		search5:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs5:'http://www.cnblogs.com',
-		'163e':'http://163.com',
-		search6:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs6:'http://www.cnblogs.com',
-		'163f':'http://163.com',
-		search7:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs7:'http://www.cnblogs.com',
-		'163g':'http://163.com',
-		search8:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs8:'http://www.cnblogs.com',
-		'163h':'http://163.com',
-		search9:{baidu:'http://www.baidu.com', soso:'http://www.soso.com'},
-		conblogs9:'http://www.cnblogs.com',
-		'163k':'http://163.com'
+	BookMark:{
+		name: '书签',
+		data:{
+			search:{
+				name: '搜索',
+				data:{
+					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
+					soso:{ name:'SoSo', url:'http://www.soso.com', item:1 },
+					google:{ name:'Google', url:'http://www.google.com', item:1 }
+				}
+			},
+			conblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+			'163':{ name: '网易', url: 'http://www.163.com', item: 1 }
+		}
 	}
 };
 
