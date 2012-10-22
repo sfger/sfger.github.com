@@ -192,6 +192,11 @@
 						set_style(dragger, {'display':'none', 'z-index':'-1000'});
 						set_style(body, {'cursor':'default'});
 						set_style(main.parentNode, {'margin-left':parseInt(get_style(left, 'width')) + 'px'});
+						if(isIE){
+							width = window.document.documentElement['clientWidth'];
+							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
+								- parseInt(left.currentStyle['width']) + 'px';
+						}
 					}
 					preventDefault(e);
 				};
