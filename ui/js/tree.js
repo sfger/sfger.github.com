@@ -191,6 +191,7 @@
 						set_style(left, {'position':'static'});
 						set_style(dragger, {'display':'none', 'z-index':'-1000'});
 						set_style(body, {'cursor':'default'});
+						set_style(main.parentNode, {'margin-left':parseInt(get_style(left, 'width')) + 'px'});
 					}
 					preventDefault(e);
 				};
@@ -202,7 +203,7 @@
 			set_style(dragger.children[0], {
 				'z-index':'3000',
 				'position':'absolute',
-				'height': style.get_outter_height(resizebar),
+				'height': style.get_outter_height(resizebar) + 'px',
 				'top':(this.offsetTop===0 ? style.get_outter_height(toper) : this.offsetTop) + 'px',
 				'left':this.offsetLeft +'px', 'background-color':'#999'
 			});
