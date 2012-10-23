@@ -124,7 +124,7 @@
         var winWidth = 0;
         var winHeight = 0;
         var li_height = style.get_outter_height(menu.children[0]);
-		if( document.documentMode===7 || (isIE&&(!isIE8)) ) document.getElementsByTagName('html')[0].style.overflow="hidden"; //body.parentNode.style.overflow = 'hidden';
+		if( document.documentMode===7 || (isIE&&(!isIE8)) ) document.getElementsByTagName('html')[0].style.overflow="hidden";
         var preventDefault = function( e ){
 			if(e){
 				if(typeof e.preventDefault === 'function'){

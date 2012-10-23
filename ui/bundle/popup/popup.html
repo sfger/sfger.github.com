@@ -101,7 +101,7 @@ window.onload = function(){
 	pop_btn.onclick = function(){
 		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
 		style.set(body, {'overflow':'hidden'});
-		if(ie_doc7) body.parentNode.style.overflow = 'hidden';
+		if(ie_doc7) document.getElementsByTagName('html')[0].style.overflow="hidden";
 		popup();
 	};
 	pop_close.onclick = function(){
@@ -110,7 +110,7 @@ window.onload = function(){
 		style.set(body, {'overflow':''});
 		if(!css1compat) body.scrollTop = scrollTop;
 		else document.documentElement.scrollTop = scrollTop;
-		if(ie_doc7) body.parentNode.style.overflow = '';
+		if(ie_doc7) document.getElementsByTagName('html')[0].style.overflow="";
 	};
 };
 //]]>
