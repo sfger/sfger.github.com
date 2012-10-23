@@ -124,7 +124,6 @@
         var winWidth = 0;
         var winHeight = 0;
         var li_height = style.get_outter_height(menu.children[0]);
-		alert(li_height);
 		if( document.documentMode===7 || (isIE&&!isIE8) ) body.parentNode.style.overflow = 'hidden';
         var preventDefault = function( e ){
 			if(e){
