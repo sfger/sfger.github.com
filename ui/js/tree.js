@@ -319,10 +319,6 @@
                     if( main.readyState == "loaded" || main.readyState == "complete" ){
 						var width = document.documentElement['clientWidth'];
                         main.style.height = winHeight;
-						if(isIE){
-							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
-								- parseInt(style.get_outter_width(left, 'width')) + 'px';
-						}
                     }
                 };
             }else{

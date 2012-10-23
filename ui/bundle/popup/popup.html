@@ -5,7 +5,6 @@
 	<title>Popup</title>
 	<style type="text/css">
 		*{ padding:0;margin:0; }
-		html { overflow-y:scroll; }
 		#page { height:1000px; }
 		#login-container{ display:none; }
 		#login-block{ width:400px; height:250px; border-radius:5px; }
@@ -30,12 +29,14 @@ window.onload = function(){
 	var is_show		= false;
 	var ie_doc7		= document.documentMode===7;
 	var isIE		= /MSIE/.exec(navigator.userAgent);
+	var isIE6		= /MSIE 6.0/.exec(navigator.userAgent);
 	var isIE8		= /MSIE 8.0/.exec(navigator.userAgent);
 	var container	= document.getElementById('login-container');
 	var pop_box		= document.getElementById('login-block');
 	var pop_close	= document.getElementById('close');
 	var pop_btn		= document.getElementById('sfg');
 	var	body		= document.body;
+	if(isIE6){ document.getElementsByTagName('html')[0].style.overflowY = 'scroll'; }
 	if( !isIE ){
 		var evt = document.createEvent("MouseEvents");
 		evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
@@ -103,7 +104,11 @@ window.onload = function(){
 	pop_btn.onclick = function(){
 		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
 		style.set(body, {'overflow':'hidden'});
-		if(isIE&&(!isIE8)) document.getElementsByTagName('html')[0].style.overflow="hidden";
+		if(isIE&&(!isIE8)){
+			var html = document.getElementsByTagName('html')[0];
+			if(isIE6) html.style.overflowY="";
+			html.style.overflow="hidden";
+		}
 		popup();
 	};
 	pop_close.onclick = function(){
@@ -112,7 +117,11 @@ window.onload = function(){
 		style.set(body, {'overflow':''});
 		if(!css1compat) body.scrollTop = scrollTop;
 		else document.documentElement.scrollTop = scrollTop;
-		if(isIE&&(!isIE8)) document.getElementsByTagName('html')[0].style.overflow="";
+		if(isIE&&(!isIE8)){
+			var html = document.getElementsByTagName('html')[0];
+			if(isIE6) html.style.overflowY="scroll";
+			html.style.overflow="";
+		}
 	};
 };
 //]]>
