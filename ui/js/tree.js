@@ -194,7 +194,7 @@
 						set_style(body, {'cursor':'default'});
 						set_style(main.parentNode, {'margin-left':parseInt(get_style(left, 'width')) + 'px'});
 						if(isIE){
-							width = window.document.documentElement['clientWidth'];
+							width = document.documentElement['clientWidth'];
 							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
 								- parseInt(left.currentStyle['width']) + 'px';
 						}
@@ -290,7 +290,7 @@
 
 		window.onload = window.onresize = function(e){
 			e = e || window.event;
-			var width = window.document.documentElement['clientWidth'];
+			var width = document.documentElement['clientWidth'];
 			var height = document.documentElement['clientHeight'];
 			var margin = parseInt(get_style(left, 'width'));
 			height = css1compat && height || body && body['clientHeight'] || height;
@@ -306,7 +306,7 @@
 			resize_menu_height(now_menu, false);
 			if(isIE){
 				main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
-					- parseInt(left.currentStyle['width']) + 'px';
+					- parseInt(style.get_outter_width(left, 'width')) + 'px';
 			}
 			preventDefault(e);
 		};
@@ -317,13 +317,17 @@
             if(main.readyState){
                 main.onreadystatechange = function(){
                     if( main.readyState == "loaded" || main.readyState == "complete" ){
+						var width = document.documentElement['clientWidth'];
                         main.style.height = winHeight;
-                        main.style.width = winWidth;
+						if(isIE){
+							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
+								- parseInt(style.get_outter_width(left, 'width')) + 'px';
+						}
                     }
                 };
             }else{
                 main.onload = function(){
-                    main.height = document.documentElement.clientHeight - 4;
+                    main.height = document.documentElement.clientHeight - 4 + 'px';
                 };
             }
             if(target.nodeName.toLowerCase()==="div"){
