@@ -117,12 +117,15 @@
         var now_menu = menu.children[0].children[1];
 		var _target = null;
         var isIE = /MSIE/.exec(navigator.userAgent);
+        var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
+        var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
+        var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
         var css1compat = document.compatMode === "CSS1Compat";
         var winWidth = 0;
         var winHeight = 0;
-        //var li_height = parseInt(get_style(menu.children[0], 'height')) + (css1compat ? parseInt(get_style(menu.children[0], 'padding-bottom')) : 0);
         var li_height = style.get_outter_height(menu.children[0]);
-		if( document.documentMode===7 ) body.parentNode.style.overflow = 'hidden';
+		alert(li_height);
+		if( document.documentMode===7 || (isIE&&!isIE8) ) body.parentNode.style.overflow = 'hidden';
         var preventDefault = function( e ){
 			if(e){
 				if(typeof e.preventDefault === 'function'){
@@ -137,9 +140,8 @@
 
 		var resize_left_menu = function(){
 			menu.style.width = parseInt(get_style(left, 'width'))
-				- (css1compat&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))))
-				- parseInt(get_style(resizebar, 'width'))
-				- (css1compat&&(parseInt(get_style(resizebar, 'border-right-width')))) + 'px';
+				- ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))))
+				- parseInt(style.get_outter_width(resizebar)) + 'px';
 		};
 		resize_left_menu();
         if( !isIE ){
@@ -158,11 +160,11 @@
 					'position':'absolute',
 					'top':0,
 					'left':0,
-					'filter':'alpha(opacity=1)',
-					'opacity':'0.01',
+					'filter':'alpha(opacity=10)',
+					'opacity':'0.1',
 					'background':'white',
 					'width':'100%',
-					'height':'100%',
+					'height':(document.documentElement.clientHeight || body.clientHeight ) + 'px',
 					'z-index':2000
 				});
 				dragger.appendChild( resizebar.cloneNode() );
@@ -287,7 +289,7 @@
         };
         menu.children[0].children[1].style.display = 'block';
 
-		window.top.onload = window.onresize = function(e){
+		window.onload = window.onresize = function(e){
 			e = e || window.event;
 			var width = window.document.documentElement['clientWidth'];
 			var height = document.documentElement['clientHeight'];
