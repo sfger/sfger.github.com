@@ -29,6 +29,7 @@ window.onload = function(){
 	var is_show		= false;
 	var ie_doc7		= document.documentMode===7;
 	var isIE		= /MSIE/.exec(navigator.userAgent);
+	var isIE8		= /MSIE 8.0/.exec(navigator.userAgent);
 	var container	= document.getElementById('login-container');
 	var pop_box		= document.getElementById('login-block');
 	var pop_close	= document.getElementById('close');
@@ -101,7 +102,7 @@ window.onload = function(){
 	pop_btn.onclick = function(){
 		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
 		style.set(body, {'overflow':'hidden'});
-		if(ie_doc7) document.getElementsByTagName('html')[0].style.overflow="hidden";
+		if(isIE&&!!isIE8) document.getElementsByTagName('html')[0].style.overflow="hidden";
 		popup();
 	};
 	pop_close.onclick = function(){
@@ -110,7 +111,7 @@ window.onload = function(){
 		style.set(body, {'overflow':''});
 		if(!css1compat) body.scrollTop = scrollTop;
 		else document.documentElement.scrollTop = scrollTop;
-		if(ie_doc7) document.getElementsByTagName('html')[0].style.overflow="";
+		if(isIE&&!!isIE8) document.getElementsByTagName('html')[0].style.overflow="";
 	};
 };
 //]]>
