@@ -96,9 +96,11 @@
 		};
 		var style = {
 			'get' : document.defaultView ? function(el,style){
-				return document.defaultView.getComputedStyle(el, null).getPropertyValue(style);
+				var val = document.defaultView.getComputedStyle(el, null).getPropertyValue(style);
+				return val ? val : 0;
 			} : function(el,style){
-				return el.currentStyle[key_trans(style)]=='medium' ? 0 : el.currentStyle[key_trans(style)];
+				var val = el.currentStyle[key_trans(style)];
+				return val==='medium' ? 0 : val;
 			},
 			'set' : function(el, css){
 				for(var key in css){
@@ -148,7 +150,8 @@
 
 		//fn resize_left_menu{{{
 		var resize_left_menu = function(){
-			menu.style.width = parseInt(get_style(left, 'width'))
+			//alert( parseInt(get_style(left, 'width')) + ' '+ ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width')))) + ' ' + parseInt(style.get_outter_width(resizebar)) );
+			menu.style.width = parseInt(style.get_outter_width(left))
 				- ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))))
 				- parseInt(style.get_outter_width(resizebar)) + 'px';
 		};
@@ -198,8 +201,11 @@
 				document.onmouseup = function(e){
 					e = e || window.event;
 					if(resize){
-						var width = dragger.children[0].offsetLeft;
-						if(width<100) width = 125;
+						var resizebar_width = parseInt(style.get_outter_width(resizebar));
+						var left_width = parseInt(style.get_outter_width(left));
+						var width = dragger.children[0].offsetLeft + resizebar_width;
+						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))));
+						else if( width<125 ) width = 210;
 						set_style(left, {'width':width+'px'});
 						resize_left_menu();
 						resize = false;

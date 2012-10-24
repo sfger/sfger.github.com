@@ -1,6 +1,7 @@
 window.onload = function(){
 	//IE flags{{{
 	var css1compat	= document.compatMode === "CSS1Compat";
+	var ie_doc7		= document.documentMode === 7;
 	var isIE		= /MSIE/.exec(navigator.userAgent);
 	var isIE6		= /MSIE 6.0/.exec(navigator.userAgent);
 	var isIE8		= /MSIE 8.0/.exec(navigator.userAgent);
@@ -89,7 +90,7 @@ window.onload = function(){
 	pop_btn.onclick = function(){
 		scrollTop = document.documentElement.scrollTop || window.pageYOffset || body.scrollTop;
 		style.set(body, {'overflow':'hidden'});
-		if(isIE&&(!isIE8)){
+		if(isIE&&((!isIE8) || ie_doc7)){
 			if(isIE6) html.style.overflowY="";
 			html.style.overflow="hidden";
 		}
@@ -103,7 +104,7 @@ window.onload = function(){
 		style.set(body, {'overflow':''});
 		if(!css1compat) body.scrollTop = scrollTop;
 		else document.documentElement.scrollTop = scrollTop;
-		if(isIE&&(!isIE8)){
+		if(isIE&&((!isIE8) || ie_doc7)){
 			if(isIE6) html.style.overflowY="scroll";
 			html.style.overflow="";
 		}
