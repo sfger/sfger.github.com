@@ -79,7 +79,9 @@
 	};
 	//}}}
 	//fn tree{{{
-    var tree = function(toper, left, main, data){
+    var tree = function(toper, left, right, data){
+		right.innerHTML = '<iframe id="main" src="" frameborder="0"></iframe>';
+		var main = right.children[0];
         var document = window.document;
 		var body = document.body;
 		var html = document.getElementsByTagName('html')[0];
@@ -95,11 +97,11 @@
 			return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
 		};
 		var style = {
-			'get' : document.defaultView ? function(el,style){
-				var val = document.defaultView.getComputedStyle(el, null).getPropertyValue(style);
+			'get' : document.defaultView ? function(el, key){
+				var val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
 				return val ? val : 0;
-			} : function(el,style){
-				var val = el.currentStyle[key_trans(style)];
+			} : function(el, key){
+				var val = el.currentStyle[key_trans(key)];
 				return val==='medium' ? 0 : val;
 			},
 			'set' : function(el, css){
@@ -108,14 +110,14 @@
 				}
 			},
 			'get_outter_height' : function(el){
-				return parseInt(get_style(el, 'height'))
-					+ (css1compat ? (parseInt(get_style(el, 'border-top-width')) + parseInt(get_style(el, 'border-bottom-width'))) : 0)
-					+ (css1compat ? (parseInt(get_style(el, 'padding-top')) + parseInt(get_style(el, 'padding-bottom'))) : 0);
+				return parseInt(this.get(el, 'height'))
+					+ (css1compat ? (parseInt(this.get(el, 'border-top-width')) + parseInt(this.get(el, 'border-bottom-width'))) : 0)
+					+ (css1compat ? (parseInt(this.get(el, 'padding-top')) + parseInt(this.get(el, 'padding-bottom'))) : 0);
 			},
 			'get_outter_width' : function(el){
-				return parseInt(get_style(el, 'width'))
-					+ (css1compat ? (parseInt(get_style(el, 'border-left-width')) + parseInt(get_style(el, 'border-right-width'))) : 0)
-					+ (css1compat ? (parseInt(get_style(el, 'padding-left')) + parseInt(get_style(el, 'padding-right'))) : 0);
+				return parseInt(this.get(el, 'width'))
+					+ (css1compat ? (parseInt(this.get(el, 'border-left-width')) + parseInt(this.get(el, 'border-right-width'))) : 0)
+					+ (css1compat ? (parseInt(this.get(el, 'padding-left')) + parseInt(this.get(el, 'padding-right'))) : 0);
 			}
 		};
 		var get_style = style.get;
@@ -150,9 +152,8 @@
 
 		//fn resize_left_menu{{{
 		var resize_left_menu = function(){
-			//alert( parseInt(get_style(left, 'width')) + ' '+ ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width')))) + ' ' + parseInt(style.get_outter_width(resizebar)) );
 			menu.style.width = parseInt(style.get_outter_width(left))
-				- ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))))
+				- ((css1compat)&&(parseInt(style.get(menu,'border-left-width')) + parseInt(style.get(menu, 'border-right-width'))))
 				- parseInt(style.get_outter_width(resizebar)) + 'px';
 		};
 		//}}}
@@ -172,7 +173,7 @@
 			if(!dragger){
 				dragger = document.createElement('div');
 				var cover = document.createElement('div');
-				set_style(cover, {
+				style.set(cover, {
 					'position':'absolute',
 					'top':0,
 					'left':0,
@@ -204,15 +205,15 @@
 						var resizebar_width = parseInt(style.get_outter_width(resizebar));
 						var left_width = parseInt(style.get_outter_width(left));
 						var width = dragger.children[0].offsetLeft + resizebar_width;
-						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))));
+						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(parseInt(style.get(menu,'border-left-width')) + parseInt(style.get(menu, 'border-right-width'))));
 						else if( width<125 ) width = 210;
-						set_style(left, {'width':width+'px'});
+						style.set(left, {'width':width+'px'});
 						resize_left_menu();
 						resize = false;
-						set_style(left, {'position':'static'});
-						set_style(dragger, {'display':'none', 'z-index':'-1000'});
-						set_style(body, {'cursor':'default'});
-						set_style(main.parentNode, {'margin-left':parseInt(get_style(left, 'width')) + 'px'});
+						style.set(left, {'position':'static'});
+						style.set(dragger, {'display':'none', 'z-index':'-1000'});
+						style.set(body, {'cursor':'default'});
+						style.set(main.parentNode, {'margin-left':parseInt(style.get(left, 'width')) + 'px'});
 						if(isIE){
 							width = document.documentElement['clientWidth'];
 							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
@@ -222,11 +223,11 @@
 					preventDefault(e);
 				};
 			}else{
-				set_style(dragger, {'display':'block'});
+				style.set(dragger, {'display':'block'});
 			}
-			set_style(body, {'cursor':'e-resize'});
-			set_style(dragger, {'z-index':'1000'});
-			set_style(dragger.children[0], {
+			style.set(body, {'cursor':'e-resize'});
+			style.set(dragger, {'z-index':'1000'});
+			style.set(dragger.children[0], {
 				'z-index':'3000',
 				'position':'absolute',
 				'height': style.get_outter_height(resizebar) + 'px',
@@ -246,7 +247,7 @@
             var sub_ul = li.children[1];
             var lis = li.parentNode.children;
 			var inc = isIE ? 20 : 10;
-			var set_li_height = li_height - (css1compat ? parseInt(get_style(li, 'padding-bottom')) : 0);
+			var set_li_height = li_height - (css1compat ? parseInt(style.get(li, 'padding-bottom')) : 0);
 			var final_show = function(height, set_li_height){
 				if( now_li!==li ){
 					now_li.children[1].style.display = 'none';
@@ -265,18 +266,18 @@
 				if(sub_ul.style.display==='block'){
 					li.style.height = set_li_height + 'px';
 					li.style.fontWeight = 'bold';
-					tmp = parseInt(get_style(menu, 'height'))
-						- (css1compat ? 1 : (parseInt(get_style(menu, 'border-top-width')) + parseInt(get_style(menu, 'border-bottom-width'))))
+					tmp = parseInt(style.get(menu, 'height'))
+						- (css1compat ? 1 : (parseInt(style.get(menu, 'border-top-width')) + parseInt(style.get(menu, 'border-bottom-width'))))
 						- (lis.length - 1) * li_height;
 					if( tmp < 50 ) tmp = 50;
 					if(is_click){
 						if(timer) clearInterval(timer);
 						timer = setInterval(function(){
-							if( parseInt(get_style(li, 'height')) + inc < tmp ){
-								if( now_li!==li && parseInt(get_style(now_li, 'height'))>li_height ){
-									now_li.style.height = parseInt(get_style(now_li, 'height')) - inc + 'px';
+							if( parseInt(style.get(li, 'height')) + inc < tmp ){
+								if( now_li!==li && parseInt(style.get(now_li, 'height'))>li_height ){
+									now_li.style.height = parseInt(style.get(now_li, 'height')) - inc + 'px';
 								}
-								li.style.height = parseInt(get_style(li, 'height')) + inc + 'px';
+								li.style.height = parseInt(style.get(li, 'height')) + inc + 'px';
 							}else{
 								final_show(tmp, set_li_height);
 								clearInterval(timer);
@@ -293,8 +294,8 @@
 					if(is_click){
 						if(timer) clearInterval(timer);
 						timer = setInterval(function(){
-							if( parseInt(get_style(li, 'height')) - inc > li_height ){
-								li.style.height = parseInt(get_style(li, 'height')) - inc + 'px';
+							if( parseInt(style.get(li, 'height')) - inc > li_height ){
+								li.style.height = parseInt(style.get(li, 'height')) - inc + 'px';
 							}else{
 								final_hide(set_li_height);
 								clearInterval(timer);
@@ -316,13 +317,13 @@
 			e = e || window.event;
 			var width = document.documentElement['clientWidth'];
 			var height = document.documentElement['clientHeight'];
-			var margin = parseInt(get_style(left, 'width'));
+			var margin = parseInt(style.get(left, 'width'));
 			height = css1compat && height || body && body['clientHeight'] || height;
-			height = height - parseInt(get_style(toper, 'height'))
-				- (css1compat&&(parseInt(get_style(toper, 'border-top-width')) + parseInt(get_style(toper, 'border-bottom-width'))));
+			height = height - parseInt(style.get(toper, 'height'))
+				- (css1compat&&(parseInt(style.get(toper, 'border-top-width')) + parseInt(style.get(toper, 'border-bottom-width'))));
 			main.parentNode.style.marginLeft = margin + 'px';
 			menu.style.height = height +
-				- (css1compat&&(parseInt(get_style(menu, 'border-top-width')) + parseInt(get_style(menu, 'border-bottom-width'))))
+				- (css1compat&&(parseInt(style.get(menu, 'border-top-width')) + parseInt(style.get(menu, 'border-bottom-width'))))
 				+ 'px';
 			main.style.height = winHeight = height + 'px';
 			resizebar.style.height = parseInt(winHeight) + 2 + 'px';
@@ -379,6 +380,7 @@
 			};
 		}
 		//}}}
+		toper.parentNode.style.display = 'block';
     };
 	//}}}
     return window.tree = tree;
@@ -474,6 +476,6 @@ var data = {
 ///}}}
 var toper = document.getElementById("top");
 var left  = document.getElementById("left");
-var main  = document.getElementById("main");
-tree(toper, left, main, data);
+var right  = document.getElementById("right");
+tree(toper, left, right, data);
 /* vim: set fdm=marker : */
