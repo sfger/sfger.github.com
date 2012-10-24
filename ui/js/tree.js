@@ -1,3 +1,4 @@
+//Define tree{{{
 (function(window){
 	//className{{{
 	var rm_class = function(el, name){
@@ -81,6 +82,15 @@
     var tree = function(toper, left, main, data){
         var document = window.document;
 		var body = document.body;
+		var html = document.getElementsByTagName('html')[0];
+		//IE flags{{{
+        var isIE = /MSIE/.exec(navigator.userAgent);
+        var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
+        var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
+        var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
+        var css1compat = document.compatMode === "CSS1Compat";
+		//}}}
+		//Object style{{{
 		var key_trans = function(key){
 			return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
 		};
@@ -108,6 +118,7 @@
 		};
 		var get_style = style.get;
 		var set_style = style.set;
+		//}}}
 		var resizebar = left.children[0];
 		var menu = left.children[1];
 		if(data){
@@ -116,15 +127,12 @@
 		}
         var now_menu = menu.children[0].children[1];
 		var _target = null;
-        var isIE = /MSIE/.exec(navigator.userAgent);
-        var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
-        var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
-        var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
-        var css1compat = document.compatMode === "CSS1Compat";
         var winWidth = 0;
         var winHeight = 0;
         var li_height = style.get_outter_height(menu.children[0]);
-		if( document.documentMode===7 || (isIE&&(!isIE8)) ) document.getElementsByTagName('html')[0].style.overflow="hidden";
+		if( document.documentMode===7 || (isIE&&(!isIE8)) ) html.style.overflow="hidden";
+
+		//fn preventDefault{{{
         var preventDefault = function( e ){
 			if(e){
 				if(typeof e.preventDefault === 'function'){
@@ -136,20 +144,26 @@
 				}
 			}
         };
+		//}}}
 
+		//fn resize_left_menu{{{
 		var resize_left_menu = function(){
 			menu.style.width = parseInt(get_style(left, 'width'))
 				- ((css1compat)&&(parseInt(get_style(menu,'border-left-width')) + parseInt(get_style(menu, 'border-right-width'))))
 				- parseInt(style.get_outter_width(resizebar)) + 'px';
 		};
+		//}}}
 		resize_left_menu();
+		//resize event create{{{
         if( !isIE ){
             var evt = document.createEvent("MouseEvents");
             evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
             window.dispatchEvent(evt);
         }
+		//}}}
 		var resize = false;
 		var dragger = null;
+		//resizebar.onmousedown{{{
 		resizebar.onmousedown = function(e){
 			e = e || window.event;
 			if(!dragger){
@@ -216,8 +230,10 @@
 			resize = true;
 			preventDefault(e);
 		};
+		//}}}
 		var timer;
 
+		//fn resize_menu_height{{{
         var resize_menu_height = function( target, is_click ){
             var li = target.parentNode;
 			var now_li = now_menu.parentNode;
@@ -286,8 +302,10 @@
 			}
 			if( li.parentNode===menu && is_click ) now_menu = target;
         };
+		//}}}
         menu.children[0].children[1].style.display = 'block';
 
+		//window.onload window.onresize{{{
 		window.onload = window.onresize = function(e){
 			e = e || window.event;
 			var width = document.documentElement['clientWidth'];
@@ -310,7 +328,9 @@
 			}
 			preventDefault(e);
 		};
+		///}}}
 
+		//menu.onclick{{{
         menu.onclick = function( e ){
             e = e || window.event;
             var target = e.target || e.srcElement;
@@ -338,7 +358,10 @@
             }
             preventDefault( e );
         };
-		if(!css1compat){
+		//}}}
+
+		//make ie6 and quirks mode support hover{{{
+		if(!css1compat || isIE6){
 			menu.onmouseover = menu.onmouseout = function(){
 				var e = window.event;
 				var container = e.srcElement;
@@ -349,8 +372,102 @@
 				preventDefault( e );
 			};
 		}
+		//}}}
     };
 	//}}}
     return window.tree = tree;
 })(window);
+//}}}
+
+//var data{{{
+var data = {
+	UI:{
+		name:'UI',
+		data:{
+			popup:{ name: 'popup', url: './ui/bundle/popup/popup.html', item: 1 }
+		}
+	},
+	BookMark:{
+		name: '书签',
+		data:{
+			search:{
+				name: '搜索、百科与词典',
+				data:{
+					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
+					soso:{ name:'SoSo', url:'http://www.soso.com', item:1 },
+					google:{ name:'Google', url:'http://www.google.com', item:1 },
+					GouGou:{ name:'GouGou', url:'http://www.gougou.com/', item:1 },
+					Wikipedia:{ name:'Wikipedia', url:'http://www.wikipedia.org/', item:1 }
+				}
+			},
+			Video:{
+				name: '视频',
+				data:{
+					Youku:{ name:'优酷', url:'http://www.youku.com', item:1 },
+					PPS:{ name:'PPS', url:'http://www.pps.tv', item:1 },
+					Tudou:{ name:'土豆', url:'http://www.tudou.com/', item:1 },
+					'163':{ name:'网易视频', url:'http://v.163.com/', item:1 },
+					Xunlei:{ name:'迅雷视频', url:'http://www.xunlei.com/', item:1 }
+				}
+			},
+			WebSite:{
+				name: '门户、新闻与社区',
+				data:{
+					Youku:{ name:'网易', url:'http://www.163.com', item:1 },
+					Sina:{ name:'新浪', url:'http://www.sina.com', item:1 },
+					sohu:{ name:'搜狐', url:'http://www.sohu.com/', item:1 },
+					QQ:{ name:'腾讯', url:'http://www.qq.com/', item:1 },
+					Xinhua:{ name:'新华网', url:'http://www.xinhuanet.com/', item:1 }
+				}
+			},
+			Blog:{
+				name: '博客',
+				data:{
+					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
+					CoolShell:{ name:'CoolShell', url:'http://www.coolshell.com', item:1 },
+					CoolShell:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
+					Zihou:{ name:'子猴博客', url:'http://www.zihou.me', item:1 },
+					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
+					'Typeof':{ name:'Typeof', url:'http://typeof.net', item:1 },
+					'Heroin':{ name:'Heroin', url:'http://heroin.so', item:1 },
+					CSSASS:{ name:'CSSASS', url:'http://www.cssass.com/blog/', item:1 },
+					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
+					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
+					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 }
+				}
+			},
+			Software:{
+				name: '软件',
+				data:{
+					Vim:{ name:'Vim', url:'http://www.vim.org', item:1 },
+					Gimp:{ name:'GIMP', url:'http://www.gimp.org', item:1 },
+					PHP:{ name:'PHP', url:'http://www.php.net', item:1 },
+					Fiddler:{ name:'Fiddler', url:'http://www.fiddler2.com/fiddler2/', item:1 },
+					System:{
+						name: '系统软件',
+						data:{
+							Driver:{ name:'驱动精灵', url:'http://www.drivergenius.com', item:1 },
+							DiskGenius:{ name:'DiskGenius', url:'http://www.diskgenius.cn/', item:1 }
+						}
+					},
+					Code_manage:{
+						name: '版本管理',
+						data:{
+							Git:{ name:'Git', url:'http://msysgit.github.com/', item:1 },
+							Github:{ name:'Github', url:'http://windows.github.com/', item:1 },
+							TortoiseSVN:{ name:'TortoiseSVN', url:'http://tortoisesvn.net/', item:1 },
+							Win32SVN:{ name:'Win32SVN', url:'http://subversion.apache.org/packages.html#windows', item:1 }
+						}
+					}
+				}
+			}
+		}
+	}
+};
+///}}}
+var toper = document.getElementById("top");
+var left  = document.getElementById("left");
+var main  = document.getElementById("main");
+tree(toper, left, main, data);
 /* vim: set fdm=marker : */
