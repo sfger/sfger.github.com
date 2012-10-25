@@ -40,44 +40,6 @@
 		return false;
 	};
 	//}}}
-	//fn create_menu {{{
-	var create_menu = function(data){
-		var create_outer_menu = function(name, sub){
-			var create_sub_item = function(name, href){
-				var li = document.createElement('li');
-				var a = document.createElement('a');
-				a.href = href;
-				a.innerHTML = name;
-				li.appendChild(a);
-				return li;
-			};
-			var create_sub_name = function(name){
-				var sub_name = document.createElement('div');
-				sub_name.className = 'container';
-				sub_name.innerHTML = name;
-				return sub_name;
-			};
-			var root = document.createElement('li');
-			root.appendChild(create_sub_name(name));
-			var inner_subs = document.createElement('ul');
-			inner_subs.style.display = 'none';
-			for(var i in sub){
-				if( !sub[i].item ){
-					inner_subs.appendChild( create_outer_menu(sub[i].name, sub[i].data) );
-				}else{
-					inner_subs.appendChild( create_sub_item(sub[i].name, sub[i].url) );
-				}
-			}
-			root.appendChild(inner_subs);
-			return root;
-		};
-		for(var i in data){
-			if(!data[i].item){
-				menu.appendChild( create_outer_menu(data[i].name, data[i].data) );
-			}
-		}
-	};
-	//}}}
 	//fn tree{{{
     var tree = function(toper, left, right, data){
 		right.innerHTML = '<iframe id="main" src="" frameborder="0"></iframe>';
@@ -93,39 +55,83 @@
         var css1compat = document.compatMode === "CSS1Compat";
 		//}}}
 		//Object style{{{
-		var key_trans = function(key){
-			return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
-		};
 		var style = {
+			'key_trans' : function(key){
+				return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
+			},
 			'get' : document.defaultView ? function(el, key){
 				var val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
 				return val ? val : 0;
 			} : function(el, key){
-				var val = el.currentStyle[key_trans(key)];
+				var val = el.currentStyle[this.key_trans(key)];
 				return val==='medium' ? 0 : val;
 			},
 			'set' : function(el, css){
 				for(var key in css){
-					el.style[key_trans(key)] = css[key];
+					el.style[this.key_trans(key)] = css[key];
 				}
 			},
 			'get_outter_height' : function(el){
 				return parseInt(this.get(el, 'height'))
-					+ (css1compat ? (parseInt(this.get(el, 'border-top-width')) + parseInt(this.get(el, 'border-bottom-width'))) : 0)
-					+ (css1compat ? (parseInt(this.get(el, 'padding-top')) + parseInt(this.get(el, 'padding-bottom'))) : 0);
+					+ parseInt(this.get(el, 'border-top-width'))
+					+ parseInt(this.get(el, 'border-bottom-width'))
+					+ parseInt(this.get(el, 'padding-top'))
+					+ parseInt(this.get(el, 'padding-bottom'));
 			},
 			'get_outter_width' : function(el){
 				return parseInt(this.get(el, 'width'))
-					+ (css1compat ? (parseInt(this.get(el, 'border-left-width')) + parseInt(this.get(el, 'border-right-width'))) : 0)
-					+ (css1compat ? (parseInt(this.get(el, 'padding-left')) + parseInt(this.get(el, 'padding-right'))) : 0);
+					+ parseInt(this.get(el, 'border-left-width'))
+					+ parseInt(this.get(el, 'border-right-width'))
+					+ parseInt(this.get(el, 'padding-left'))
+					+ parseInt(this.get(el, 'padding-right'));
 			}
 		};
-		var get_style = style.get;
-		var set_style = style.set;
 		//}}}
 		var resizebar = left.children[0];
 		var menu = left.children[1];
+        var li_height = style.get_outter_height(menu.children[0]);
 		if(data){
+			//fn create_menu {{{
+			var create_menu = function(data){
+				var create_outer_menu = function(name, sub){
+					var create_sub_item = function(name, href){
+						var li = document.createElement('li');
+						var a = document.createElement('a');
+						a.href = href;
+						a.innerHTML = name;
+						li.appendChild(a);
+						return li;
+					};
+					var create_sub_name = function(name){
+						var sub_name = document.createElement('div');
+						sub_name.className = 'container';
+						sub_name.innerHTML = name;
+						return sub_name;
+					};
+					var root = document.createElement('li');
+					root.appendChild(create_sub_name(name));
+					var inner_subs = document.createElement('ul');
+					inner_subs.style.display = 'none';
+					for(var i in sub){
+						if( !sub[i].item ){
+							inner_subs.appendChild( create_outer_menu(sub[i].name, sub[i].data) );
+						}else{
+							inner_subs.appendChild( create_sub_item(sub[i].name, sub[i].url) );
+						}
+					}
+					root.appendChild(inner_subs);
+					return root;
+				};
+				var tmp = null;
+				for(var i in data){
+					if(!data[i].item){
+						tmp = create_outer_menu(data[i].name, data[i].data);
+						if(!css1compat) tmp.style.height = li_height + 'px';
+						menu.appendChild( tmp );
+					}
+				}
+			};
+			//}}}
 			menu.innerHTML = '';
 			create_menu(data);
 		}
@@ -133,7 +139,6 @@
 		var _target = null;
         var winWidth = 0;
         var winHeight = 0;
-        var li_height = style.get_outter_height(menu.children[0]);
 		if( document.documentMode===7 || (isIE&&(!isIE8)) ) html.style.overflow="hidden";
 
 		//fn preventDefault{{{
