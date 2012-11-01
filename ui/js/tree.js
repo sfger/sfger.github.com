@@ -477,6 +477,12 @@ var data = {
 						}
 					}
 				}
+			},
+			Tools:{
+				name: 'HTML5',
+				data:{
+					Vim:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
+				}
 			}
 		}
 	}
