@@ -88,6 +88,9 @@
 		};
 		//}}}
 		var resizebar = left.children[0];
+		if(!css1compat){
+			style.set(toper, {height:style.get_outter_height(toper)});
+		}
 		var menu = left.children[1];
         var li_height = style.get_outter_height(menu.children[0]);
 		if(data){
