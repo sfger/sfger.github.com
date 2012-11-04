@@ -47,12 +47,13 @@
         var document = window.document;
 		var body = document.body;
 		var html = document.getElementsByTagName('html')[0];
-		//IE flags{{{
+		//Browser flags{{{
         var isIE = /MSIE/.exec(navigator.userAgent);
         var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
         var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
         var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
         var css1compat = document.compatMode === "CSS1Compat";
+        var isSafari = /Safari/.exec(navigator.userAgent);
 		//}}}
 		//Object style{{{
 		var style = {
@@ -329,7 +330,8 @@
 			height = css1compat && height || body && body['clientHeight'] || height;
 			height = height - parseInt(style.get(toper, 'height'))
 				- (css1compat&&(parseInt(style.get(toper, 'border-top-width')) + parseInt(style.get(toper, 'border-bottom-width'))));
-			main.parentNode.style.marginLeft = margin + 'px';
+			right.style.marginLeft = margin + 'px';
+			if(isSafari) right.style.width = width - style.get_outter_width(left, 'width') + 'px';
 			menu.style.height = height +
 				- (css1compat&&(parseInt(style.get(menu, 'border-top-width')) + parseInt(style.get(menu, 'border-bottom-width'))))
 				+ 'px';
@@ -459,6 +461,7 @@ var data = {
 					Vim:{ name:'Vim', url:'http://www.vim.org', item:1 },
 					Gimp:{ name:'GIMP', url:'http://www.gimp.org', item:1 },
 					PHP:{ name:'PHP', url:'http://www.php.net', item:1 },
+					Scala:{ name:'Scala', url:'http://www.scala-lang.org', item:1 },
 					Fiddler:{ name:'Fiddler', url:'http://www.fiddler2.com/fiddler2/', item:1 },
 					System:{
 						name: '系统软件',
