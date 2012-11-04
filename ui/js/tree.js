@@ -193,7 +193,7 @@
 					'height':(document.documentElement.clientHeight || body.clientHeight ) + 'px',
 					'z-index':2000
 				});
-				dragger.appendChild( resizebar.cloneNode() );
+				dragger.appendChild( resizebar.cloneNode(true) );
 				dragger.appendChild( cover );
 				body.appendChild(dragger);
 				document.onmousemove = function(e){
@@ -211,8 +211,8 @@
 				document.onmouseup = function(e){
 					e = e || window.event;
 					if(resize){
-						var resizebar_width = parseInt(style.get_outter_width(resizebar));
-						var left_width = parseInt(style.get_outter_width(left));
+						var resizebar_width = style.get_outter_width(resizebar);
+						var left_width = style.get_outter_width(left);
 						var width = dragger.children[0].offsetLeft + resizebar_width;
 						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(parseInt(style.get(menu,'border-left-width')) + parseInt(style.get(menu, 'border-right-width'))));
 						else if( width<125 ) width = 210;
