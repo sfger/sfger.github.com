@@ -437,7 +437,7 @@ var data = {
 				}
 			},
 			Blog:{
-				name: '博客',
+				name: '个人博客、社区',
 				data:{
 					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
@@ -451,6 +451,81 @@ var data = {
 					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
 					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
 					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 }
+				}
+			},
+			BlogNewTech:{
+				name: '团队博客',
+				data:{
+					QQ:{
+						name: '腾讯',
+						data:{
+							Client:{ name:'QQ客户端团队博客', url:'http://impd.tencent.com/', item:1 },
+							FrontTeam:{ name:'腾讯Web前端 AlloyTeam', url:'http://www.alloyteam.com/', item:1 },
+							Game:{ name:'TGideas游戏设计', url:'http://tgideas.qq.com/', item:1 },
+							WSD:{ name:'WSD 用户体验', url:'http://mxd.tencent.com/', item:1 },
+							ECD:{ name:'ECD电商用户体验', url:'http://ecd.tencent.com/', item:1 },
+							CDC:{ name:'CDC用户研究与体验设计中心', url:'http://cdc.tencent.com/', item:1 },
+							ISUX:{ name:'ISUX社交用户体验设计部', url:'http://isux.tencent.com/blog', item:1 }
+						}
+					},
+					TaoBao:{
+						name: '淘宝',
+						data:{
+							UED:{ name:'淘宝UED', url:'http://ued.taobao.com/', item:1 },
+							QA:{ name:'淘宝QA', url:'http://rdc.taobao.com/blog/qa/', item:1 },
+							Test:{ name:'淘测试', url:'http://www.taobaotest.com/', item:1 },
+							DBA:{ name:'淘宝DBA', url:'http://www.taobaodba.com/', item:1 },
+							JM:{ name:'淘宝JAVA中间件', url:'http://rdc.taobao.com/team/jm/', item:1 },
+							CORE:{ name:'淘宝核心技术团队', url:'http://rdc.taobao.com/blog/cs/', item:1 },
+							ISUX:{ name:'淘宝搜索技术团队', url:'http://www.searchtb.com/', item:1 },
+							UX:{ name:'http://ux.etao.com/', url:'一淘UX', item:1 }
+						}
+					},
+					Alibaba:{
+						name: '阿里巴巴',
+						data:{
+							UED_Inter:{ name:'阿里巴巴国际站UED', url:'http://www.aliued.com/', item:1 },
+							UED_CN:{ name:'阿里巴巴中文站UED', url:'http://www.aliued.cn/', item:1 },
+							Data:{ name:'阿里集团数据平台', url:'http://www.alidata.org/', item:1 }
+						}
+					},
+					AliPay:{
+						name: '支付宝',
+						data:{
+							PED:{ name:'支付宝PED', url:'http://ped.alipay.com/', item:1 },
+							UED:{ name:'支付宝UED', url:'http://ued.alipay.com/', item:1 },
+							User_search:{ name:'支付宝用户研究', url:'http://ued.alipay.com/ur', item:1 }
+						}
+					},
+					Sohu:{
+						name: '搜狐',
+						data:{
+							MUED:{ name:'搜狐MUED', url:'http://mued.sohu.com/', item:1 },
+							FocusUED:{ name:'搜狐焦点UED', url:'http://ued.focus.cn/wordpress/', item:1 },
+							UED:{ name:'搜狐UED', url:'http://ued.sohu.com/', item:1 }
+						}
+					},
+					Baidu:{
+						name: '百度',
+						data:{
+							MUX:{ name:'百度MUX', url:'http://mux.baidu.com/', item:1 },
+							UFO:{ name:'百度UFO', url:'http://www.baiduux.com/', item:1 },
+							UED:{ name:'百度UED', url:'http://ued.baidu.com/', item:1 }
+						}
+					},
+					Sina:{
+						name: '新浪',
+						data:{
+							UDC:{ name:'新浪微博UDC', url:'http://udc.weibo.com/', item:1 },
+							UED:{ name:'新浪UED', url:'http://ued.sina.com/', item:1 }
+						}
+					},
+					Ctrip:{ name:'携程UED', url:'http://ued.ctrip.com/', item:1 },
+					RenRen:{ name:'人人FED', url:'http://fed.renren.com/', item:1 },
+					WangYi:{ name:'网易UEDC', url:'http://uedc.163.com/', item:1 },
+					QiHu:{ name:'奇虎75Team', url:'http://www.75team.com/', item:1 },
+					SoGou:{ name:'搜狗UED', url:'http://www.75team.com/', item:1 },
+					Floor19:{ name:'19楼UED', url:'http://blog.19ued.com/', item:1 }
 				}
 			},
 			Software:{
