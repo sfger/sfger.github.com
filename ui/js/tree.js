@@ -399,16 +399,20 @@
 
 //var data{{{
 var data = {
+	//UI{{{
 	UI:{
 		name:'UI',
 		data:{
 			popup:{ name: 'popup', url: './ui/bundle/popup/popup.html', item: 1 }
 		}
 	},
+	//}}}
+	//{{{BookMark
 	BookMark:{
 		name: '书签',
 		data:{
-			search:{
+			//Search{{{
+			Search:{
 				name: '搜索、百科与词典',
 				data:{
 					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
@@ -418,6 +422,8 @@ var data = {
 					Wikipedia:{ name:'Wikipedia', url:'http://www.wikipedia.org/', item:1 }
 				}
 			},
+			//}}}
+			//Video{{{
 			Video:{
 				name: '视频',
 				data:{
@@ -428,6 +434,8 @@ var data = {
 					Xunlei:{ name:'迅雷视频', url:'http://www.xunlei.com/', item:1 }
 				}
 			},
+			//}}}
+			//WebSite{{{
 			WebSite:{
 				name: '门户、新闻与社区',
 				data:{
@@ -438,6 +446,8 @@ var data = {
 					Xinhua:{ name:'新华网', url:'http://www.xinhuanet.com/', item:1 }
 				}
 			},
+			//}}}
+			//Blog{{{
 			Blog:{
 				name: '个人博客、社区',
 				data:{
@@ -455,6 +465,8 @@ var data = {
 					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 }
 				}
 			},
+			//}}}
+			//BlogNewTech{{{
 			BlogNewTech:{
 				name: '团队博客',
 				data:{
@@ -530,6 +542,8 @@ var data = {
 					Floor19:{ name:'19楼UED', url:'http://blog.19ued.com/', item:1 }
 				}
 			},
+			//}}}
+			//Software{{{
 			Software:{
 				name: '软件',
 				data:{
@@ -556,14 +570,18 @@ var data = {
 					}
 				}
 			},
+			//}}}
+			//Tools{{{
 			Tools:{
 				name: 'HTML5',
 				data:{
 					Vim:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
 				}
 			}
+			//}}}
 		}
 	}
+	//}}}
 };
 ///}}}
 var toper = document.getElementById("top");
