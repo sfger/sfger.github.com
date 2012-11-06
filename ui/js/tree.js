@@ -480,7 +480,7 @@ var data = {
 							JM:{ name:'淘宝JAVA中间件', url:'http://rdc.taobao.com/team/jm/', item:1 },
 							CORE:{ name:'淘宝核心技术团队', url:'http://rdc.taobao.com/blog/cs/', item:1 },
 							ISUX:{ name:'淘宝搜索技术团队', url:'http://www.searchtb.com/', item:1 },
-							UX:{ name:'http://ux.etao.com/', url:'一淘UX', item:1 }
+							UX:{ name:'一淘UX', url:'http://ux.etao.com/', item:1 }
 						}
 					},
 					Alibaba:{
@@ -526,7 +526,7 @@ var data = {
 					RenRen:{ name:'人人FED', url:'http://fed.renren.com/', item:1 },
 					WangYi:{ name:'网易UEDC', url:'http://uedc.163.com/', item:1 },
 					QiHu:{ name:'奇虎75Team', url:'http://www.75team.com/', item:1 },
-					SoGou:{ name:'搜狗UED', url:'http://www.75team.com/', item:1 },
+					SoGou:{ name:'搜狗UED', url:'http://ued.sogou.com/', item:1 },
 					Floor19:{ name:'19楼UED', url:'http://blog.19ued.com/', item:1 }
 				}
 			},
