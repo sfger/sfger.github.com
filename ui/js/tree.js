@@ -228,6 +228,7 @@
 							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
 								- parseInt(left.currentStyle['width']) + 'px';
 						}
+						if(isSafari) right.style.width = document.documentElement['clientWidth'] - style.get_outter_width(left, 'width') + 'px';
 					}
 					preventDefault(e);
 				};
