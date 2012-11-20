@@ -462,7 +462,8 @@ var data = {
 					CSSASS:{ name:'CSSASS', url:'http://www.cssass.com/blog/', item:1 },
 					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
 					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
-					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 }
+					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 },
+					Moon:{ name:'月光博客', url:'http://www.williamlong.info/', item:1 },
 				}
 			},
 			//}}}
