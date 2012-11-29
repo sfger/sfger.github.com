@@ -41,19 +41,19 @@
 	};
 	//}}}
 	//fn tree{{{
-    var tree = function(toper, left, right, data){
+	var tree = function(toper, left, right, data){
 		right.innerHTML = '<iframe id="main" src="" frameborder="0"></iframe>';
 		var main = right.children[0];
-        var document = window.document;
+		var document = window.document;
 		var body = document.body;
 		var html = document.getElementsByTagName('html')[0];
 		//Browser flags{{{
-        var isIE = /MSIE/.exec(navigator.userAgent);
-        var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
-        var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
-        var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
-        var css1compat = document.compatMode === "CSS1Compat";
-        var isSafari = /Safari/.exec(navigator.userAgent);
+		var isIE = /MSIE/.exec(navigator.userAgent);
+		var isIE6 = /MSIE 6.0/.exec(navigator.userAgent);
+		var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
+		var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
+		var css1compat = document.compatMode === "CSS1Compat";
+		var isSafari = /Safari/.exec(navigator.userAgent);
 		//}}}
 		//Object style{{{
 		var style = {
@@ -93,7 +93,7 @@
 			style.set(toper, {height:style.get_outter_height(toper)});
 		}
 		var menu = left.children[1];
-        var li_height = style.get_outter_height(menu.children[0]);
+		var li_height = style.get_outter_height(menu.children[0]);
 		if(data){
 			//fn create_menu {{{
 			var create_menu = function(data){
@@ -139,14 +139,14 @@
 			menu.innerHTML = '';
 			create_menu(data);
 		}
-        var now_menu = menu.children[0].children[1];
+		var now_menu = menu.children[0].children[1];
 		var _target = null;
-        var winWidth = 0;
-        var winHeight = 0;
+		var winWidth = 0;
+		var winHeight = 0;
 		if( document.documentMode===7 || (isIE&&(!isIE8)) ) html.style.overflow="hidden";
 
 		//fn preventDefault{{{
-        var preventDefault = function( e ){
+		var preventDefault = function( e ){
 			if(e){
 				if(typeof e.preventDefault === 'function'){
 					e.preventDefault();
@@ -156,7 +156,7 @@
 					e.cancelBubble = true;
 				}
 			}
-        };
+		};
 		//}}}
 
 		//fn resize_left_menu{{{
@@ -168,11 +168,11 @@
 		//}}}
 		resize_left_menu();
 		//resize event create{{{
-        if( !isIE ){
-            var evt = document.createEvent("MouseEvents");
-            evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-            window.dispatchEvent(evt);
-        }
+		if( !isIE ){
+			var evt = document.createEvent("MouseEvents");
+			evt.initMouseEvent("resize", true, true, this, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+			window.dispatchEvent(evt);
+		}
 		//}}}
 		var resize = false;
 		var dragger = null;
@@ -251,11 +251,11 @@
 		var timer;
 
 		//fn resize_menu_height{{{
-        var resize_menu_height = function( target, is_click ){
-            var li = target.parentNode;
+		var resize_menu_height = function( target, is_click ){
+			var li = target.parentNode;
 			var now_li = now_menu.parentNode;
-            var sub_ul = li.children[1];
-            var lis = li.parentNode.children;
+			var sub_ul = li.children[1];
+			var lis = li.parentNode.children;
 			var inc = isIE ? 20 : 10;
 			var set_li_height = li_height - (css1compat ? parseInt(style.get(li, 'padding-bottom')) : 0);
 			var final_show = function(height, set_li_height){
@@ -270,7 +270,7 @@
 				sub_ul.style.display = 'none';
 				li.style.height = height + 'px';
 			};
-            var tmp;
+			var tmp;
 			if( is_click ) sub_ul.style.display = sub_ul.style.display!=="block" ? "block" : "none";
 			if( li.parentNode===menu ){
 				if(sub_ul.style.display==='block'){
@@ -318,9 +318,9 @@
 				}
 			}
 			if( li.parentNode===menu && is_click ) now_menu = target;
-        };
+		};
 		//}}}
-        menu.children[0].children[1].style.display = 'block';
+		menu.children[0].children[1].style.display = 'block';
 
 		//window.onload window.onresize{{{
 		window.onload = window.onresize = function(e){
@@ -349,33 +349,33 @@
 		///}}}
 
 		//menu.onclick{{{
-        menu.onclick = function( e ){
-            e = e || window.event;
-            var target = e.target || e.srcElement;
-            if(main.readyState){
-                main.onreadystatechange = function(){
-                    if( main.readyState == "loaded" || main.readyState == "complete" ){
+		menu.onclick = function( e ){
+			e = e || window.event;
+			var target = e.target || e.srcElement;
+			if(main.readyState){
+				main.onreadystatechange = function(){
+					if( main.readyState == "loaded" || main.readyState == "complete" ){
 						var width = document.documentElement['clientWidth'];
-                        main.style.height = winHeight;
-                    }
-                };
-            }else{
-                main.onload = function(){
-                    main.height = document.documentElement.clientHeight - 4 + 'px';
-                };
-            }
-            if(target.nodeName.toLowerCase()==="div"){
+						main.style.height = winHeight;
+					}
+				};
+			}else{
+				main.onload = function(){
+					main.height = document.documentElement.clientHeight - 4 + 'px';
+				};
+			}
+			if(target.nodeName.toLowerCase()==="div"){
 				resize_menu_height( target, true );
-            }else{
-                if( target.href ){
+			}else{
+				if( target.href ){
 					if(_target) rm_class(_target, 'current');
 					_target = target;
 					add_class(target, 'current');
 					main.src=target.href;
 				}
-            }
-            preventDefault( e );
-        };
+			}
+			preventDefault( e );
+		};
 		//}}}
 
 		//make ie6 and quirks mode support hover{{{
@@ -392,9 +392,9 @@
 		}
 		//}}}
 		toper.parentNode.style.display = 'block';
-    };
+	};
 	//}}}
-    return window.tree = tree;
+	return window.tree = tree;
 })(window);
 //}}}
 
