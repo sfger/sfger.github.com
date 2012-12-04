@@ -98,11 +98,12 @@
 			//fn create_menu {{{
 			var create_menu = function(data){
 				var create_outer_menu = function(name, sub){
-					var create_sub_item = function(name, href){
+					var create_sub_item = function(sub){
 						var li = document.createElement('li');
 						var a = document.createElement('a');
-						a.href = href;
-						a.innerHTML = name;
+						a.href = sub.url;
+						if(sub.target) a.target = sub.target;
+						a.innerHTML = sub.name;
 						li.appendChild(a);
 						return li;
 					};
@@ -120,7 +121,8 @@
 						if( !sub[i].item ){
 							inner_subs.appendChild( create_outer_menu(sub[i].name, sub[i].data) );
 						}else{
-							inner_subs.appendChild( create_sub_item(sub[i].name, sub[i].url) );
+							//inner_subs.appendChild( create_sub_item(sub[i].name, sub[i].url) );
+							inner_subs.appendChild( create_sub_item(sub[i]) );
 						}
 					}
 					root.appendChild(inner_subs);
@@ -371,6 +373,7 @@
 					if(_target) rm_class(_target, 'current');
 					_target = target;
 					add_class(target, 'current');
+					if(target.target==='_blank') return true;
 					main.src=target.href;
 				}
 			}
@@ -400,14 +403,6 @@
 
 //var data{{{
 var data = {
-	//UI{{{
-	UI:{
-		name:'UI',
-		data:{
-			popup:{ name: 'popup', url: './ui/bundle/popup/popup.html', item: 1 }
-		}
-	},
-	//}}}
 	//{{{BookMark
 	BookMark:{
 		name: '书签',
@@ -418,7 +413,7 @@ var data = {
 				data:{
 					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
 					soso:{ name:'SoSo', url:'http://www.soso.com', item:1 },
-					google:{ name:'Google', url:'http://www.google.com', item:1 },
+					google:{ name:'Google', url:'http://www.google.com', item:1, target:'_blank' },
 					GouGou:{ name:'GouGou', url:'http://www.gougou.com/', item:1 },
 					Wikipedia:{ name:'Wikipedia', url:'http://www.wikipedia.org/', item:1 }
 				}
@@ -453,9 +448,11 @@ var data = {
 				name: '个人博客、社区',
 				data:{
 					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+					LampBlog:{ name:'Lamp Blog', url:'http://www.lampblog.net/ubuntu/find%E5%91%BD%E4%BB%A4/', item:1 },
+					CoolShell:{ name:'酷壳', url:'http://www.coolshell.com', item:1 },
+					W3cplus:{ name:'w3cplus', url:'http://www.w3cplus.com/', item:1 },
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
-					CoolShell:{ name:'CoolShell', url:'http://www.coolshell.com', item:1 },
-					CoolShell:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
+					PanWeiZeng:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
 					Zihou:{ name:'子猴博客', url:'http://www.zihou.me', item:1 },
 					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
 					'Typeof':{ name:'Typeof', url:'http://typeof.net', item:1 },
@@ -575,12 +572,60 @@ var data = {
 			//}}}
 			//Tools{{{
 			Tools:{
-				name: 'HTML5',
+				name: '小工具',
 				data:{
-					Vim:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
+					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 },
+					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 }
 				}
 			}
 			//}}}
+		}
+	},
+	//}}}
+	//{{{JavaScript
+	JavaScript:{
+		name:'JavaScript',
+		data:{
+			application:{
+				name: '应用',
+				data: {
+					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 }
+				}
+			},
+			Blog:{
+				name: 'Share',
+				data: {
+					Franky:{ name: 'Franky', url: 'http://www.cnblogs.com/_franky', item: 1 },
+					Rubylouvre:{ name: '司徒正美', url: 'http://www.cnblogs.com/rubylouvre', item: 1 }
+				}
+			}
+		}
+	},
+	//}}}
+	//{{{NodeJS
+	NodeJS:{
+		name:'NodeJS',
+		data:{
+			application:{
+				name: '应用',
+				data: {
+					Curl:{ name: 'Curl', url: 'https://github.com/cujojs/curl', item: 1, target:"_blank" }
+				}
+			},
+			Blog:{
+				name: 'Share',
+				data: {
+					NodeJS:{ name: 'NodeJS官网', url: 'http://nodejs.org/', item: 1 }
+				}
+			}
+		}
+	},
+	//}}}
+	//UI{{{
+	UI:{
+		name:'UI',
+		data:{
+			popup:{ name: 'popup', url: './ui/bundle/popup/popup.html', item: 1 }
 		}
 	}
 	//}}}
