@@ -417,7 +417,7 @@ var data = {
 				data:{
 					baidu:{ name:'Baidu', url:'http://www.baidu.com', item:1 },
 					soso:{ name:'SoSo', url:'http://www.soso.com', item:1 },
-					google:{ name:'Google', url:'http://www.google.com', item:1, target:'_blank' },
+					google:{ name:'Google', url:'https://www.google.com', item:1, target:'_blank' },
 					GouGou:{ name:'GouGou', url:'http://www.gougou.com/', item:1 },
 					Wikipedia:{ name:'Wikipedia', url:'http://www.wikipedia.org/', item:1 }
 				}
