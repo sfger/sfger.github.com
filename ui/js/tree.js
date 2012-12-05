@@ -60,12 +60,16 @@
 			'key_trans' : function(key){
 				return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
 			},
-			'get' : document.defaultView ? function(el, key){
-				var val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
-				return val ? val : 0;
-			} : function(el, key){
-				var val = el.currentStyle[this.key_trans(key)];
-				return val==='medium' ? 0 : val;
+			'get' : function(el, key, return_int){
+				var val;
+				if( document.defaultView ){
+					val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
+				}else{
+					val = el.currentStyle[this.key_trans(key)];
+					val = (val==='medium') ? '' : val;
+				}
+				val = val || 0;
+				return return_int ? parseInt(val, 10) : val;
 			},
 			'set' : function(el, css){
 				for(var key in css){
@@ -73,18 +77,18 @@
 				}
 			},
 			'get_outter_height' : function(el){
-				return parseInt(this.get(el, 'height'))
-					+ parseInt(this.get(el, 'border-top-width'))
-					+ parseInt(this.get(el, 'border-bottom-width'))
-					+ parseInt(this.get(el, 'padding-top'))
-					+ parseInt(this.get(el, 'padding-bottom'));
+				return this.get(el, 'height', true)
+					+ this.get(el, 'border-top-width', true)
+					+ this.get(el, 'border-bottom-width', true)
+					+ this.get(el, 'padding-top', true)
+					+ this.get(el, 'padding-bottom', true);
 			},
 			'get_outter_width' : function(el){
-				return parseInt(this.get(el, 'width'))
-					+ parseInt(this.get(el, 'border-left-width'))
-					+ parseInt(this.get(el, 'border-right-width'))
-					+ parseInt(this.get(el, 'padding-left'))
-					+ parseInt(this.get(el, 'padding-right'));
+				return this.get(el, 'width', true)
+					+ this.get(el, 'border-left-width', true)
+					+ this.get(el, 'border-right-width', true)
+					+ this.get(el, 'padding-left', true)
+					+ this.get(el, 'padding-right', true);
 			}
 		};
 		//}}}
@@ -163,9 +167,9 @@
 
 		//fn resize_left_menu{{{
 		var resize_left_menu = function(){
-			menu.style.width = parseInt(style.get_outter_width(left))
-				- ((css1compat)&&(parseInt(style.get(menu,'border-left-width')) + parseInt(style.get(menu, 'border-right-width'))))
-				- parseInt(style.get_outter_width(resizebar)) + 'px';
+			menu.style.width = style.get_outter_width(left)
+				- ((css1compat)&&(style.get(menu,'border-left-width', true) + style.get(menu, 'border-right-width', true)))
+				- style.get_outter_width(resizebar) + 'px';
 		};
 		//}}}
 		resize_left_menu();
@@ -216,7 +220,7 @@
 						var resizebar_width = style.get_outter_width(resizebar);
 						var left_width = style.get_outter_width(left);
 						var width = dragger.children[0].offsetLeft + resizebar_width;
-						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(parseInt(style.get(menu,'border-left-width')) + parseInt(style.get(menu, 'border-right-width'))));
+						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(style.get(menu,'border-left-width', true) + style.get(menu, 'border-right-width', true)));
 						else if( width<125 ) width = 210;
 						style.set(left, {'width':width+'px'});
 						resize_left_menu();
@@ -224,11 +228,11 @@
 						style.set(left, {'position':'static'});
 						style.set(dragger, {'display':'none', 'z-index':'-1000'});
 						style.set(body, {'cursor':'default'});
-						style.set(main.parentNode, {'margin-left':parseInt(style.get(left, 'width')) + 'px'});
+						style.set(main.parentNode, {'margin-left':style.get(left, 'width', true) + 'px'});
 						if(isIE){
 							width = document.documentElement['clientWidth'];
 							main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
-								- parseInt(left.currentStyle['width']) + 'px';
+								- style.get(left, 'width', true) + 'px';
 						}
 						if(isSafari) right.style.width = document.documentElement['clientWidth'] - style.get_outter_width(left, 'width') + 'px';
 					}
@@ -259,7 +263,7 @@
 			var sub_ul = li.children[1];
 			var lis = li.parentNode.children;
 			var inc = isIE ? 20 : 10;
-			var set_li_height = li_height - (css1compat ? parseInt(style.get(li, 'padding-bottom')) : 0);
+			var set_li_height = li_height - (css1compat ? style.get(li, 'padding-bottom', true) : 0);
 			var final_show = function(height, set_li_height){
 				if( now_li!==li ){
 					now_li.children[1].style.display = 'none';
@@ -278,18 +282,18 @@
 				if(sub_ul.style.display==='block'){
 					li.style.height = set_li_height + 'px';
 					li.style.fontWeight = 'bold';
-					tmp = parseInt(style.get(menu, 'height'))
-						- (css1compat ? 1 : (parseInt(style.get(menu, 'border-top-width')) + parseInt(style.get(menu, 'border-bottom-width'))))
+					tmp = style.get(menu, 'height', true)
+						- (css1compat ? 1 : style.get(menu, 'border-top-width', true) + style.get(menu, 'border-bottom-width', true))
 						- (lis.length - 1) * li_height;
 					if( tmp < 50 ) tmp = 50;
 					if(is_click){
 						if(timer) clearInterval(timer);
 						timer = setInterval(function(){
-							if( parseInt(style.get(li, 'height')) + inc < tmp ){
-								if( now_li!==li && parseInt(style.get(now_li, 'height'))>li_height ){
-									now_li.style.height = parseInt(style.get(now_li, 'height')) - inc + 'px';
+							if( style.get(li, 'height', true) + inc < tmp ){
+								if( now_li!==li && style.get(now_li, 'height', true)>li_height ){
+									now_li.style.height = style.get(now_li, 'height', true) - inc + 'px';
 								}
-								li.style.height = parseInt(style.get(li, 'height')) + inc + 'px';
+								li.style.height = style.get(li, 'height', true) + inc + 'px';
 							}else{
 								final_show(tmp, set_li_height);
 								clearInterval(timer);
@@ -306,8 +310,8 @@
 					if(is_click){
 						if(timer) clearInterval(timer);
 						timer = setInterval(function(){
-							if( parseInt(style.get(li, 'height')) - inc > li_height ){
-								li.style.height = parseInt(style.get(li, 'height')) - inc + 'px';
+							if( style.get(li, 'height', true) - inc > li_height ){
+								li.style.height = style.get(li, 'height', true) - inc + 'px';
 							}else{
 								final_hide(set_li_height);
 								clearInterval(timer);
@@ -329,14 +333,14 @@
 			e = e || window.event;
 			var width = document.documentElement['clientWidth'];
 			var height = document.documentElement['clientHeight'];
-			var margin = parseInt(style.get(left, 'width'));
+			var margin = style.get(left, 'width', true);
 			height = css1compat && height || body && body['clientHeight'] || height;
-			height = height - parseInt(style.get(toper, 'height'))
-				- (css1compat&&(parseInt(style.get(toper, 'border-top-width')) + parseInt(style.get(toper, 'border-bottom-width'))));
+			height = height - style.get(toper, 'height', true)
+				- (css1compat&&(style.get(toper, 'border-top-width', true) + style.get(toper, 'border-bottom-width', true)));
 			right.style.marginLeft = margin + 'px';
 			if(isSafari) right.style.width = width - style.get_outter_width(left, 'width') + 'px';
 			menu.style.height = height +
-				- (css1compat&&(parseInt(style.get(menu, 'border-top-width')) + parseInt(style.get(menu, 'border-bottom-width'))))
+				- (css1compat&&(style.get(menu, 'border-top-width', true) + style.get(menu, 'border-bottom-width', true)))
 				+ 'px';
 			main.style.height = winHeight = height + 'px';
 			resizebar.style.height = parseInt(winHeight) + 2 + 'px';
@@ -344,7 +348,7 @@
 			resize_menu_height(now_menu, false);
 			if(isIE){
 				main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
-					- parseInt(style.get_outter_width(left, 'width')) + 'px';
+					- style.get_outter_width(left, 'width') + 'px';
 			}
 			preventDefault(e);
 		};
@@ -449,7 +453,7 @@ var data = {
 				data:{
 					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
 					LampBlog:{ name:'Lamp Blog', url:'http://www.lampblog.net/ubuntu/find%E5%91%BD%E4%BB%A4/', item:1 },
-					CoolShell:{ name:'酷壳', url:'http://www.coolshell.com', item:1 },
+					CoolShell:{ name:'酷壳', url:'http://coolshell.cn/', item:1 },
 					W3cplus:{ name:'w3cplus', url:'http://www.w3cplus.com/', item:1 },
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
 					PanWeiZeng:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
