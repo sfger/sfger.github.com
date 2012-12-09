@@ -1,7 +1,6 @@
-//Define tree{{{
-(function(window){
-	//className{{{
-	var rm_class = function(el, name){
+//className{{{
+var className = {
+	rm : function(el, name){
 		if(el.className){
 			var list = el.className.split(/\s+/);
 			var i, ret = [];
@@ -11,9 +10,9 @@
 			}
 			el.className = ret.join(' ');
 		}
-	};
+	},
 
-	var add_class = function(el, name){
+	add : function(el, name){
 		if(el.className){
 			var list = el.className.split(/\s+/);
 			var i, ret = [];
@@ -26,9 +25,9 @@
 		}else{
 			el.className = name;
 		}
-	};
+	},
 
-	var has_class = function(el, name){
+	has : function(el, name){
 		if(el.className){
 			var list = el.className.split(/\s+/);
 			var i, ret = [];
@@ -38,8 +37,50 @@
 			}
 		}
 		return false;
-	};
-	//}}}
+	}
+};
+//}}}
+
+//style{{{
+var style = {
+	'key_trans' : function(key){
+		return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
+	},
+	'get' : function(el, key, return_int){
+		var val;
+		if( document.defaultView ){
+			val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
+		}else{
+			val = el.currentStyle[this.key_trans(key)];
+			val = (val==='medium') ? '' : val;
+		}
+		val = val || 0;
+		return return_int ? parseInt(val, 10) : val;
+	},
+	'set' : function(el, css){
+		for(var key in css){
+			el.style[this.key_trans(key)] = css[key];
+		}
+	},
+	'get_outter_height' : function(el){
+		return this.get(el, 'height', true)
+			+ this.get(el, 'border-top-width', true)
+			+ this.get(el, 'border-bottom-width', true)
+			+ this.get(el, 'padding-top', true)
+			+ this.get(el, 'padding-bottom', true);
+	},
+	'get_outter_width' : function(el){
+		return this.get(el, 'width', true)
+			+ this.get(el, 'border-left-width', true)
+			+ this.get(el, 'border-right-width', true)
+			+ this.get(el, 'padding-left', true)
+			+ this.get(el, 'padding-right', true);
+	}
+};
+//}}}
+
+//Define tree{{{
+(function(window){
 	//fn tree{{{
 	var tree = function(toper, left, right, data){
 		right.innerHTML = '<iframe id="main" src="" frameborder="0"></iframe>';
@@ -54,43 +95,6 @@
 		var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
 		var css1compat = document.compatMode === "CSS1Compat";
 		var isSafari = /Safari/.exec(navigator.userAgent);
-		//}}}
-		//Object style{{{
-		var style = {
-			'key_trans' : function(key){
-				return  key.replace(/\-(\w)/g, function($, $1){ return $1.toUpperCase(); });
-			},
-			'get' : function(el, key, return_int){
-				var val;
-				if( document.defaultView ){
-					val = document.defaultView.getComputedStyle(el, null).getPropertyValue(key);
-				}else{
-					val = el.currentStyle[this.key_trans(key)];
-					val = (val==='medium') ? '' : val;
-				}
-				val = val || 0;
-				return return_int ? parseInt(val, 10) : val;
-			},
-			'set' : function(el, css){
-				for(var key in css){
-					el.style[this.key_trans(key)] = css[key];
-				}
-			},
-			'get_outter_height' : function(el){
-				return this.get(el, 'height', true)
-					+ this.get(el, 'border-top-width', true)
-					+ this.get(el, 'border-bottom-width', true)
-					+ this.get(el, 'padding-top', true)
-					+ this.get(el, 'padding-bottom', true);
-			},
-			'get_outter_width' : function(el){
-				return this.get(el, 'width', true)
-					+ this.get(el, 'border-left-width', true)
-					+ this.get(el, 'border-right-width', true)
-					+ this.get(el, 'padding-left', true)
-					+ this.get(el, 'padding-right', true);
-			}
-		};
 		//}}}
 		var resizebar = left.children[0];
 		if(!css1compat){
@@ -374,9 +378,9 @@
 				resize_menu_height( target, true );
 			}else{
 				if( target.href ){
-					if(_target) rm_class(_target, 'current');
+					if(_target) className.rm(_target, 'current');
 					_target = target;
-					add_class(target, 'current');
+					className.add(target, 'current');
 					if(target.target==='_blank') return true;
 					main.src=target.href;
 				}
@@ -391,8 +395,8 @@
 				var e = window.event;
 				var container = e.srcElement;
 				if(container.parentNode.parentNode!==menu && container.nodeName.toLowerCase()==='div'){
-					if(e.type==='mouseover') add_class(container, 'current');
-					else if(e.type==='mouseout') rm_class(container, 'current');
+					if(e.type==='mouseover') className.add(container, 'current');
+					else if(e.type==='mouseout') className.rm(container, 'current');
 				}
 				preventDefault( e );
 			};
