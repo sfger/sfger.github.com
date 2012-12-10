@@ -462,14 +462,18 @@ var data = {
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
 					PanWeiZeng:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
 					Zihou:{ name:'子猴博客', url:'http://www.zihou.me', item:1 },
-					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
 					'Typeof':{ name:'Typeof', url:'http://typeof.net', item:1 },
 					'Heroin':{ name:'Heroin', url:'http://heroin.so', item:1 },
 					CSSASS:{ name:'CSSASS', url:'http://www.cssass.com/blog/', item:1 },
 					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
 					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
 					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 },
-					Moon:{ name:'月光博客', url:'http://www.williamlong.info/', item:1 }
+					Moon:{ name:'月光博客', url:'http://www.williamlong.info/', item:1 },
+					Ruanyifeng:{ name:'阮一峰', url:'http://www.ruanyifeng.com/blog/', item:1 },
+					Front:{ name:'前端观察', url:'http://www.qianduan.net/', item:1 },
+					Webrebuild:{ name:'webrebuild', url:'http://www.webrebuild.org/', item:1 },
+					Blueidea:{ name:'蓝色梦想', url:'http://www.blueidea.com/', item:1 },
+					JueYing:{ name:'绝影', url:'http://blog.csdn.net/hitetoshi/', item:1 }
 				}
 			},
 			//}}}
@@ -582,8 +586,17 @@ var data = {
 			Tools:{
 				name: '小工具',
 				data:{
-					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 },
-					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 }
+					Emmet:{ name:'Emmet', url:'http://docs.emmet.io/', item:1 },
+					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 },
+					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
+				}
+			},
+			//}}}
+			//Tech{{{
+			Tools:{
+				name: 'Tech',
+				data:{
+					SEA:{ name:'SEA', url:'http://sae.sina.com.cn/', item:1 }
 				}
 			}
 			//}}}
@@ -597,14 +610,20 @@ var data = {
 			application:{
 				name: '应用',
 				data: {
-					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 }
+					JQuery:{ name: 'JQuery', url: 'http://jquery.com/', item: 1 },
+					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 },
+					Qwrap:{ name: 'Qwrap', url: 'http://qwrap.com/', item: 1 },
+					WindJS:{ name: 'WindJS', url: 'http://windjs.org/cn/', item: 1 }
 				}
 			},
 			Blog:{
 				name: 'Share',
 				data: {
+					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
 					Franky:{ name: 'Franky', url: 'http://www.cnblogs.com/_franky', item: 1 },
-					Rubylouvre:{ name: '司徒正美', url: 'http://www.cnblogs.com/rubylouvre', item: 1 }
+					Rubylouvre:{ name: '司徒正美', url: 'http://www.cnblogs.com/rubylouvre', item: 1 },
+					Otakustay:{ name: 'Gray Zhang', url: 'http://otakustay.com/', item: 1 },
+					JKisJK:{ name: 'JKisJK', url: 'http://www.cnblogs.com/jkisjk', item: 1 }
 				}
 			}
 		}
