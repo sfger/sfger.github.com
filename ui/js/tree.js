@@ -593,7 +593,7 @@ var data = {
 			},
 			//}}}
 			//Tech{{{
-			Tools:{
+			Tech:{
 				name: 'Tech',
 				data:{
 					SEA:{ name:'SEA', url:'http://sae.sina.com.cn/', item:1 }
