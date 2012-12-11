@@ -587,6 +587,7 @@ var data = {
 				name: '小工具',
 				data:{
 					Emmet:{ name:'Emmet', url:'http://docs.emmet.io/', item:1 },
+					VimZenCoding :{ name:'Vim Zencoding', url:'https://github.com/mattn/zencoding-vim', item:1 },
 					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 },
 					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
 				}
@@ -596,7 +597,7 @@ var data = {
 			Tech:{
 				name: 'Tech',
 				data:{
-					SEA:{ name:'SEA', url:'http://sae.sina.com.cn/', item:1 }
+					SAE:{ name:'SinaAppEngine', url:'http://sae.sina.com.cn/', item:1 }
 				}
 			}
 			//}}}
@@ -619,7 +620,7 @@ var data = {
 			Blog:{
 				name: 'Share',
 				data: {
-					Huangzhilong:{ name:'黄志龙', url:'http://ucren.com/blog/', item:1 },
+					Huangzhilong:{ name:'Dron', url:'http://ucren.com/blog/', item:1 },
 					Franky:{ name: 'Franky', url: 'http://www.cnblogs.com/_franky', item: 1 },
 					Rubylouvre:{ name: '司徒正美', url: 'http://www.cnblogs.com/rubylouvre', item: 1 },
 					Otakustay:{ name: 'Gray Zhang', url: 'http://otakustay.com/', item: 1 },
