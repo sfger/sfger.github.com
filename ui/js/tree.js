@@ -587,7 +587,7 @@ var data = {
 				name: '小工具',
 				data:{
 					Emmet:{ name:'Emmet', url:'http://docs.emmet.io/', item:1 },
-					VimZenCoding :{ name:'Vim Zencoding', url:'https://github.com/mattn/zencoding-vim', item:1 },
+					VimZenCoding :{ name:'Vim Zencoding', url:'https://github.com/mattn/zencoding-vim', item:1, target:'_blank' },
 					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 },
 					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
 				}
@@ -597,7 +597,10 @@ var data = {
 			Tech:{
 				name: 'Tech',
 				data:{
-					SAE:{ name:'SinaAppEngine', url:'http://sae.sina.com.cn/', item:1 }
+					SAE:{ name:'SinaAppEngine', url:'http://sae.sina.com.cn/', item:1 },
+					GoogleDev:{ name:'Google Developers', url:'https://developers.google.com/academy/apis/commerce/?hl=zh-cn', item:1, target:'_blank' },
+					MSDN:{ name:'MSDN', url:'http://msdn.microsoft.com/en-us/library/ms683218%28VS.85%29.aspx', item:1 },
+					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN' }
 				}
 			}
 			//}}}
