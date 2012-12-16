@@ -598,9 +598,9 @@ var data = {
 				name: 'Tech',
 				data:{
 					SAE:{ name:'SinaAppEngine', url:'http://sae.sina.com.cn/', item:1 },
-					GoogleDev:{ name:'Google Developers', url:'https://developers.google.com/academy/apis/commerce/?hl=zh-cn', item:1, target:'_blank' },
 					MSDN:{ name:'MSDN', url:'http://msdn.microsoft.com/en-us/library/ms683218%28VS.85%29.aspx', item:1 },
-					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN', item:1 }
+					GoogleDev:{ name:'Google Developers', url:'https://developers.google.com/academy/apis/commerce/?hl=zh-cn', item:1, target:'_blank' },
+					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN', item:1, target:'_blank' }
 				}
 			}
 			//}}}
