@@ -10,25 +10,23 @@
 <body>
 <div id="page">
 	<div id="top">
+		<a href="http://sfger.github.com">
+			<h1>Sfger</h1>
+			<span>http://sfger.github.com</span>
+		</a>
 	</div>
 	<div>
 		<div id="left">
 			<div id="resizebar"></div>
-			<ul id="menu">
-				<li>
-					<div class="container">test</div>
-					<ul>
-						<li><a href="http://www.baidu.com">baidu</a></li>
-						<li><a href="http://www.google.com" target="_blank">google</a></li>
-					</ul>
-				</li>
-			</ul>
+			<ul id="menu"><li></li></ul>
 		</div>
 		<div id="right"></div>
 	</div>
 </div><!-- Page end! -->
 <script type="text/javascript" src="./ui/js/tree.js"></script>
+<script type="text/javascript" src="./ui/js/my_tree_data.js"></script>
 <script type="text/javascript">
+tree(document.getElementById("top"), document.getElementById("left"), document.getElementById("right"), data);
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-36458542-1']);
 _gaq.push(['_trackPageview']);
