@@ -48,6 +48,7 @@ var data = {
 					LampBlog:{ name:'Lamp Blog', url:'http://www.lampblog.net/ubuntu/find%E5%91%BD%E4%BB%A4/', item:1 },
 					CoolShell:{ name:'酷壳', url:'http://coolshell.cn/', item:1 },
 					W3cplus:{ name:'w3cplus', url:'http://www.w3cplus.com/', item:1 },
+					Berlinix:{ name:'berlinix', url:'http://www.berlinix.com/', item:1 },
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
 					PanWeiZeng:{ name:'潘魏增', url:'http://panweizeng.com', item:1 },
 					Zihou:{ name:'子猴博客', url:'http://www.zihou.me', item:1 },

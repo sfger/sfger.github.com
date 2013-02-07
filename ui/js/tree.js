@@ -389,7 +389,6 @@ var style = {
 				}
 			}
 			var now_ul = now_menu.parentNode.children[1];
-			preventDefault( e );
 			if(target.parentNode.parentNode!==menu && (target.nodeName.toLowerCase()=='a' || target.nodeName.toLowerCase()=='div')){
 				var view_offset = target.parentNode.offsetTop - now_ul.offsetTop - now_ul.scrollTop;
 				var scroll_val = now_ul.scrollTop + (view_offset - now_ul.clientHeight/2/2);
@@ -402,30 +401,29 @@ var style = {
 						}else{
 							now_ul.scrollTop -= inc;
 						}
-					} else {
+					}else{
 						now_ul.scrollTop = scroll_val;
 						clearInterval(timer);
 					}
 					if(timer && (now_ul.scrollTop+now_ul.clientHeight>=now_ul.scrollHeight || now_ul.scrollTop<=0)) clearInterval(timer);
-					console.log('0:'+now_ul.scrollTop);
-					console.log('1:'+now_ul.scrollHeight);
 				}, 10);
 			}
+			preventDefault(e);
 		};
 		//}}}
 
 		//make ie6 and quirks mode support hover{{{
-		menu.onmouseover = menu.onmouseout = function(e){
-			var e = e || window.event;
-			var container = e.srcElement || e.target;
-			if(!css1compat || isIE6){
+		if(!css1compat || isIE6){
+			menu.onmouseover = menu.onmouseout = function(e){
+				e = e || window.event;
+				var container = e.srcElement || e.target;
 				if(container.parentNode.parentNode!==menu && container.nodeName.toLowerCase()==='div'){
 					if(e.type==='mouseover') className.add(container, 'hovered');
 					else if(e.type==='mouseout') className.rm(container, 'hovered');
 				}
-			}
-			preventDefault( e );
-		};
+				preventDefault( e );
+			};
+		}
 		//}}}
 		toper.parentNode.style.display = 'block';
 	};
