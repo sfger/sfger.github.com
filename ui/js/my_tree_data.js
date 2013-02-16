@@ -59,7 +59,7 @@ var data = {
 					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
 					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 },
 					Moon:{ name:'月光博客', url:'http://www.williamlong.info/', item:1 },
-					Ruanyifeng:{ name:'阮一峰', url:'http://www.ruanyifeng.com/blog/', item:1 },
+					Ruanyifeng:{ name:'阮一峰', url:'http://www.ruanyifeng.com/blog/', item:1, target:"_blank" },
 					Front:{ name:'前端观察', url:'http://www.qianduan.net/', item:1 },
 					Webrebuild:{ name:'webrebuild', url:'http://www.webrebuild.org/', item:1 },
 					Blueidea:{ name:'蓝色梦想', url:'http://www.blueidea.com/', item:1 },

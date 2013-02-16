@@ -1,7 +1,7 @@
-@main_color:#2cb0c7;
-@container_color:#ff4400;
-@line_height:25px;
-.padding_left(@times: 1){ padding-left:@times*10px; }
+@main_color: #2cb0c7;
+@container_color: #ff4400;
+@line_height: 25px;
+.padding_left(@times: 1){ padding-left: @times*10px; }
 
 * { padding: 0; margin: 0; font-family: Consolas,Tahoma,Arial,Helvetica,sans-serif; }
 body { overflow: hidden; }
@@ -17,11 +17,11 @@ body { overflow: hidden; }
 		span { font-size: 11px; }
 	}
 }
-#left { float:left; width: 210px; }
+#left { float: left; width: 210px; }
 #right { overflow: hidden; }
 #main { width: 100%; _margin-left: -3px; }
 #resizebar { border-right: 1px solid @main_color; float: right; width: 3px; height: 100%; cursor: e-resize; background: white; }
-#menu { float:left; overflow:hidden; border:1px solid @main_color; }
+#menu { float: left; overflow: hidden; border: 1px solid @main_color; }
 #menu li { overflow: hidden; height: @line_height; margin: 0; list-style: none; padding: 0 0 1px 0; }
 #menu li ul { height: auto; overflow: hidden; overflow-y: auto; display: none; font-weight: normal; }
 #menu li .container { font-size: 14px; .padding_left(0.5); color: white; cursor: pointer; line-height: @line_height+2px; height: @line_height; width: 100%; overflow: hidden; display: block; background: @main_color; }
@@ -39,7 +39,7 @@ body { overflow: hidden; }
 	}
 	a {
 		color: blue; line-height: @line_height; text-decoration: none; display: block;
-		font-size:12px;
+		font-size: 12px;
 	}
 	li {
 		.container, a { .padding_left(2); }

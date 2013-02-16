@@ -253,7 +253,7 @@ var style = {
 				'z-index':'3000',
 				'position':'absolute',
 				'height': style.get_outter_height(resizebar) + 'px',
-				'top':(this.offsetTop===0 ? style.get_outter_height(toper) : this.offsetTop) + 'px',
+				'top':(this.offsetTop===0 ? (css1compat ? style.get_outter_height(toper) : style.get(toper, 'height', true)) : this.offsetTop) + 'px',
 				'left':this.offsetLeft +'px',
 				'background-color':'#999'
 			});
