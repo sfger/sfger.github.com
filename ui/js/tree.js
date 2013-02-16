@@ -377,20 +377,18 @@ var style = {
 					main.height = documentElement.clientHeight - 4 + 'px';
 				};
 			}
-			if(target.nodeName.toLowerCase()==="div"){
-				resize_menu_height( target, true );
-			}else{
-				if( target.href ){
-					if(_target) className.rm(_target, 'selected');
-					_target = target;
-					className.add(target, 'selected');
-					if(target.target==='_blank') return true;
-					main.src=target.href;
-				}
-			}
 			var now_ul = now_menu.parentNode.children[1];
 			if(target.parentNode.parentNode!==menu && (target.nodeName.toLowerCase()=='a' || target.nodeName.toLowerCase()=='div')){
-				var view_offset = target.parentNode.offsetTop - now_ul.offsetTop - now_ul.scrollTop;
+				var get_offsetTop = function(el){
+					if(el.parentNode !== document.body){
+						return el.offsetTop + get_offsetTop(el.parentNode);
+					}
+					return 0;
+				};
+				var view_offset = (isIE7 || document.documentMode==7)
+					? (get_offsetTop(target.parentNode) - get_offsetTop(now_ul))
+					: (target.parentNode.offsetTop - now_ul.offsetTop)
+				view_offset -= now_ul.scrollTop;
 				var scroll_val = now_ul.scrollTop + (view_offset - now_ul.clientHeight/2/2);
 				var inc = 5;
 				if(timer) clearInterval(timer);
@@ -407,6 +405,15 @@ var style = {
 					}
 					if(timer && (now_ul.scrollTop+now_ul.clientHeight>=now_ul.scrollHeight || now_ul.scrollTop<=0)) clearInterval(timer);
 				}, 10);
+			}
+			if(target.nodeName.toLowerCase()==="div"){
+				resize_menu_height( target, true );
+			}else if( target.href ){
+				if(_target) className.rm(_target, 'selected');
+				_target = target;
+				className.add(target, 'selected');
+				if(target.target==='_blank') return true;
+				else main.src=target.href;
 			}
 			preventDefault(e);
 		};
