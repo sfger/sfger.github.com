@@ -48,7 +48,7 @@ window.onload = function(){
 		var winWidth  = css1compat ? document.documentElement['clientWidth'] : body.clientWidth;
 		style.set(container, {
 			'z-index':'9999',
-			'position':'absolute',
+			//'position':'absolute',
 			'top': scrollTop + 'px',
 			'left':'0px',
 			'width':winWidth+'px',
@@ -58,6 +58,12 @@ window.onload = function(){
 			'filter':'alpha(opacity=80)',
 			'background':'#ccc'
 		});
+		if(isIE6 || !css1compat){
+			style.set(container, {
+				'position':'absolute',
+				'top': scrollTop + 'px'
+			});
+		}
 		style.set(pop_box, {
 			'background':'purple',
 			'position':'absolute',
@@ -77,15 +83,23 @@ window.onload = function(){
 		var winWidth  = css1compat ? document.documentElement['clientWidth'] : body.clientWidth;
 		var winHeight = css1compat ? document.documentElement['clientHeight'] : body.clientHeight;
 		style.set(container, {
-			'top':scrollTop + 'px',
+			//'top':scrollTop + 'px',
 			'width':winWidth + 'px',
 			'height':winHeight + 'px'
 		});
+		if(isIE6 || !css1compat){
+			style.set(container, {
+				'top': scrollTop + 'px'
+			});
+		}
 		style.set(pop_box, {
 			'top':(winHeight-parseInt(style.get(pop_box, 'height')))/4 + 'px',
 			'left':(winWidth-parseInt(style.get(pop_box, 'width')))/2 + 'px'
 		});
 	};
+	if(isIE6 || !css1compat){
+		window.onscroll = window.onresize;
+	}
 	//}}}
 	//pop_btn.onclick{{{
 	pop_btn.onclick = function(){
