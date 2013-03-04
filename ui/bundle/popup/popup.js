@@ -49,7 +49,7 @@ window.onload = function(){
 		style.set(container, {
 			'z-index':'9999',
 			//'position':'absolute',
-			'top': 0,
+			'top': '0px',
 			'left':'0px',
 			'width':winWidth+'px',
 			'height':winHeight+'px',
