@@ -387,7 +387,7 @@ var style = {
 				};
 				var view_offset = (isIE7 || document.documentMode==7)
 					? (get_offsetTop(target.parentNode) - get_offsetTop(now_ul))
-					: (target.parentNode.offsetTop - now_ul.offsetTop)
+					: (target.parentNode.offsetTop - now_ul.offsetTop);
 				view_offset -= now_ul.scrollTop;
 				var scroll_val = now_ul.scrollTop + (view_offset - now_ul.clientHeight/2/2);
 				var inc = 5;

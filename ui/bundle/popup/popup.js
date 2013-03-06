@@ -48,15 +48,15 @@ window.onload = function(){
 		var winWidth  = css1compat ? document.documentElement['clientWidth'] : body.clientWidth;
 		style.set(container, {
 			'z-index':'9999',
-			//'position':'absolute',
+			'position':'fixed',
 			'top': '0px',
 			'left':'0px',
 			'width':winWidth+'px',
 			'height':winHeight+'px',
 			'opacity':'0.6',
 			'filter':'opacity(60)',
-			'filter':'alpha(opacity=80)',
-			'background':'#ccc'
+			'filter':'alpha(opacity=60)',
+			'background':'black'
 		});
 		if(isIE6 || !css1compat){
 			style.set(container, {
@@ -65,11 +65,13 @@ window.onload = function(){
 			});
 		}
 		style.set(pop_box, {
-			'background':'purple',
 			'position':'absolute',
 			'top':(winHeight-parseInt(style.get(pop_box, 'height')))/4 + 'px',
 			'left':(winWidth-parseInt(style.get(pop_box, 'width')))/2 + 'px',
-			'margin':'auto'
+			'margin':'auto',
+			'border-radius':'5px',
+			'background':'white',
+			'box-shadow':'5px 5px 100px white'
 		});
 	};
 	//}}}
