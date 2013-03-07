@@ -54,9 +54,8 @@ window.onload = function(){
 			'width':winWidth+'px',
 			'height':winHeight+'px',
 			'opacity':'0.6',
-			'filter':'opacity(60)',
 			'filter':'alpha(opacity=60)',
-			'background':'black'
+			'background':'#333'
 		});
 		if(isIE6 || !css1compat){
 			style.set(container, {
@@ -71,7 +70,7 @@ window.onload = function(){
 			'margin':'auto',
 			'border-radius':'5px',
 			'background':'white',
-			'box-shadow':'5px 5px 100px white'
+			'box-shadow':'1px 1px 10px white'
 		});
 	};
 	//}}}
