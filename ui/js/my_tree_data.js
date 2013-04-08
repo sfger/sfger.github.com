@@ -24,7 +24,8 @@ var data = {
 					PPS:{ name:'PPS', url:'http://www.pps.tv', item:1 },
 					Tudou:{ name:'土豆', url:'http://www.tudou.com/', item:1 },
 					'163':{ name:'网易视频', url:'http://v.163.com/', item:1 },
-					Xunlei:{ name:'迅雷视频', url:'http://www.xunlei.com/', item:1 }
+					Xunlei:{ name:'迅雷视频', url:'http://www.xunlei.com/', item:1 },
+					FengYun:{ name:'风云直播', url:'http://www.fengyunzhibo.com/', item:1 }
 				}
 			},
 			//}}}
@@ -45,6 +46,7 @@ var data = {
 				name: '个人博客、社区',
 				data:{
 					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+					'36KR':{ name:'36kr', url:'http://www.36kr.com/', item:1 },
 					LampBlog:{ name:'Lamp Blog', url:'http://www.lampblog.net/ubuntu/find%E5%91%BD%E4%BB%A4/', item:1 },
 					CoolShell:{ name:'酷壳', url:'http://coolshell.cn/', item:1 },
 					W3cplus:{ name:'w3cplus', url:'http://www.w3cplus.com/', item:1 },
@@ -58,12 +60,15 @@ var data = {
 					IBMCN:{ name:'IBM-CN', url:'https://www.ibm.com/developerworks/cn/', item:1 },
 					Soboom:{ name:'Soboom', url:'http://www.soboom.com/index.html', item:1 },
 					ZhangXinXu:{ name:'张鑫旭', url:'http://www.zhangxinxu.com', item:1 },
+					Sivan:{ name:'Sivan&#039;s Blog', url:'http://lightcss.com/', item:1 },
 					Moon:{ name:'月光博客', url:'http://www.williamlong.info/', item:1 },
 					Ruanyifeng:{ name:'阮一峰', url:'http://www.ruanyifeng.com/blog/', item:1, target:"_blank" },
 					Front:{ name:'前端观察', url:'http://www.qianduan.net/', item:1 },
 					Webrebuild:{ name:'webrebuild', url:'http://www.webrebuild.org/', item:1 },
 					Blueidea:{ name:'蓝色梦想', url:'http://www.blueidea.com/', item:1 },
-					JueYing:{ name:'绝影', url:'http://blog.csdn.net/hitetoshi/', item:1 }
+					JueYing:{ name:'绝影', url:'http://blog.csdn.net/hitetoshi/', item:1 },
+					DGua:{ name:'D瓜哥', url:'http://www.cnblogs.com/diguage/', item:1 },
+					'Html580':{ name:'HTML580', url:'http://www.html580.com/', item:1 }
 				}
 			},
 			//}}}
@@ -153,6 +158,7 @@ var data = {
 					PHP:{ name:'PHP', url:'http://www.php.net', item:1 },
 					Scala:{ name:'Scala', url:'http://www.scala-lang.org', item:1 },
 					Fiddler:{ name:'Fiddler', url:'http://www.fiddler2.com/fiddler2/', item:1 },
+					BitBucket:{ name:'BitBucket', url:'https://bitbucket.org/', item:1 },
 					System:{
 						name: '系统软件',
 						data:{
@@ -177,9 +183,12 @@ var data = {
 				name: '小工具',
 				data:{
 					Emmet:{ name:'Emmet', url:'http://docs.emmet.io/', item:1 },
+					Less:{ name:'Less', url:'https://github.com/groenewege/vim-less', item:1, target:'_blank' },
 					VimZenCoding :{ name:'Vim Zencoding', url:'https://github.com/mattn/zencoding-vim', item:1, target:'_blank' },
 					Linr:{ name:'Linr', url:'http://hi.baidu.com/vickeychen', item:1 },
-					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 }
+					Figure:{ name:'HTML5轮廓工具', url:'http://gsnedders.html5.org/', item:1 },
+					Trello:{ name:'Trello', url:'https://trello.com', item:1 },
+					YouDaoNote:{ name:'有道笔记', url:'https://note.youdao.com', item:1 }
 				}
 			},
 			//}}}
@@ -190,7 +199,8 @@ var data = {
 					SAE:{ name:'SinaAppEngine', url:'http://sae.sina.com.cn/', item:1 },
 					MSDN:{ name:'MSDN', url:'http://msdn.microsoft.com/en-us/library/ms683218%28VS.85%29.aspx', item:1 },
 					GoogleDev:{ name:'Google Developers', url:'https://developers.google.com/academy/apis/commerce/?hl=zh-cn', item:1, target:'_blank' },
-					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN', item:1, target:'_blank' }
+					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN', item:1, target:'_blank' },
+					JavaDoc:{ name:'Java document', url:'http://docs.oracle.com/javase/6/docs/api/overview-summary.html', item:1 }
 				}
 			}
 			//}}}
@@ -207,7 +217,8 @@ var data = {
 					JQuery:{ name: 'JQuery', url: 'http://jquery.com/', item: 1 },
 					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 },
 					Qwrap:{ name: 'Qwrap', url: 'http://qwrap.com/', item: 1 },
-					WindJS:{ name: 'WindJS', url: 'http://windjs.org/cn/', item: 1 }
+					WindJS:{ name: 'WindJS', url: 'http://windjs.org/cn/', item: 1 },
+					Impress:{ name: 'Impress', url: 'http://bartaz.github.io/impress.js/#/bored', item: 1 }
 				}
 			},
 			Blog:{
@@ -217,7 +228,8 @@ var data = {
 					Franky:{ name: 'Franky', url: 'http://www.cnblogs.com/_franky', item: 1 },
 					Rubylouvre:{ name: '司徒正美', url: 'http://www.cnblogs.com/rubylouvre', item: 1 },
 					Otakustay:{ name: 'Gray Zhang', url: 'http://otakustay.com/', item: 1 },
-					JKisJK:{ name: 'JKisJK', url: 'http://www.cnblogs.com/jkisjk', item: 1 }
+					JKisJK:{ name: 'JKisJK', url: 'http://www.cnblogs.com/jkisjk', item: 1 },
+					CloudGamer:{ name: 'cloudgamer', url: 'http://www.cnblogs.com/cloudgamer/', item: 1 }
 				}
 			}
 		}
