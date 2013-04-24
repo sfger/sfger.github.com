@@ -154,6 +154,7 @@ var data = {
 				name: '软件',
 				data:{
 					Vim:{ name:'Vim', url:'http://www.vim.org', item:1 },
+					Vim2:{ name:'Vim2', url:'http://vim.wendal.net/', item:1 },
 					Gimp:{ name:'GIMP', url:'http://www.gimp.org', item:1 },
 					PHP:{ name:'PHP', url:'http://www.php.net', item:1 },
 					Scala:{ name:'Scala', url:'http://www.scala-lang.org', item:1 },
