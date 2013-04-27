@@ -68,7 +68,8 @@ var data = {
 					Blueidea:{ name:'蓝色梦想', url:'http://www.blueidea.com/', item:1 },
 					JueYing:{ name:'绝影', url:'http://blog.csdn.net/hitetoshi/', item:1 },
 					DGua:{ name:'D瓜哥', url:'http://www.cnblogs.com/diguage/', item:1 },
-					'Html580':{ name:'HTML580', url:'http://www.html580.com/', item:1 }
+					'Html580':{ name:'HTML580', url:'http://www.html580.com/', item:1 },
+					'v_JULY_v':{ name:'v_JULY_v', url:'http://blog.csdn.net/v_JULY_v', item:1 }
 				}
 			},
 			//}}}
@@ -201,7 +202,8 @@ var data = {
 					MSDN:{ name:'MSDN', url:'http://msdn.microsoft.com/en-us/library/ms683218%28VS.85%29.aspx', item:1 },
 					GoogleDev:{ name:'Google Developers', url:'https://developers.google.com/academy/apis/commerce/?hl=zh-cn', item:1, target:'_blank' },
 					GoogleAna:{ name:'谷歌流量分析', url:'https://www.google.com/analytics/web/?hl=zh-CN', item:1, target:'_blank' },
-					JavaDoc:{ name:'Java document', url:'http://docs.oracle.com/javase/6/docs/api/overview-summary.html', item:1 }
+					JavaDoc:{ name:'Java document', url:'http://docs.oracle.com/javase/6/docs/api/overview-summary.html', item:1 },
+					Codeplex:{ name:'Codeplex', url:'http://www.codeplex.com/', item:1 }
 				}
 			}
 			//}}}
@@ -216,6 +218,8 @@ var data = {
 				name: '应用',
 				data: {
 					JQuery:{ name: 'JQuery', url: 'http://jquery.com/', item: 1 },
+					Underscore:{ name: 'Underscore', url: 'https://github.com/documentcloud/underscore/', item: 1 },
+					Backbone:{ name: 'Backbone', url: 'https://github.com/documentcloud/backbone/', item: 1 },
 					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 },
 					Qwrap:{ name: 'Qwrap', url: 'http://qwrap.com/', item: 1 },
 					WindJS:{ name: 'WindJS', url: 'http://windjs.org/cn/', item: 1 },
