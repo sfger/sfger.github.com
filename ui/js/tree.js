@@ -84,7 +84,7 @@ var style = {
 (function(window){
 	//fn tree{{{
 	var tree = function(toper, left, right, data){
-		right.innerHTML = '<iframe id="main" src="" frameborder="0"></iframe>';
+		right.innerHTML = '<iframe id="main" src="" frameborder="0" style="float:left;"></iframe>';
 		var main = right.children[0];
 		var document = window.document;
 		var documentElement = document.documentElement;
@@ -96,7 +96,7 @@ var style = {
 		var isIE7 = /MSIE 7.0/.exec(navigator.userAgent);
 		var isIE8 = /MSIE 8.0/.exec(navigator.userAgent);
 		var css1compat = document.compatMode === "CSS1Compat";
-		var isSafari = /Safari/.exec(navigator.userAgent);
+		var isSafari = !!/Safari/.exec(navigator.userAgent);
 		//}}}
 		var resizebar = left.children[0];
 		if(!css1compat){
@@ -173,9 +173,17 @@ var style = {
 
 		//fn resize_left_menu{{{
 		var resize_left_menu = function(){
-			menu.style.width = style.get_outter_width(left)
+			var width = style.get_outter_width(left)
+				- style.get(left, 'padding-left', true)*2
 				- ((css1compat)&&(style.get(menu,'border-left-width', true) + style.get(menu, 'border-right-width', true)))
-				- style.get_outter_width(resizebar) + 'px';
+				- style.get(menu, 'padding-left', true)*2
+				- style.get_outter_width(resizebar);
+			if(width <=0 ){
+				style.set(menu, {display:'none'})
+			}else{
+				style.set(menu, {display:'block'})
+				menu.style.width = width + 'px';
+			}
 		};
 		//}}}
 		resize_left_menu();
@@ -226,8 +234,15 @@ var style = {
 						var resizebar_width = style.get_outter_width(resizebar);
 						var left_width = style.get_outter_width(left);
 						var width = dragger.children[0].offsetLeft + resizebar_width;
-						if(width<125 && left_width>width) width = resizebar_width + ((css1compat)&&(style.get(menu,'border-left-width', true) + style.get(menu, 'border-right-width', true)));
-						else if( width<125 ) width = 210;
+						if(width<125 && left_width>width){
+							width = resizebar_width
+								+ ((css1compat)&&(style.get(menu,'border-left-width', true)
+								+ style.get(menu, 'border-right-width', true)));
+							style.set(resizebar, {background:'#aad', width:'8px'});
+						}else if(width < 125){
+							width = 210;
+							style.set(resizebar, {background:'#ddf', width:'3px'});
+						}
 						style.set(left, {'width':width+'px'});
 						resize_left_menu();
 						resize = false;
@@ -344,20 +359,30 @@ var style = {
 			height = height - style.get(toper, 'height', true)
 				- (css1compat&&(style.get(toper, 'border-top-width', true) + style.get(toper, 'border-bottom-width', true)));
 			right.style.marginLeft = margin + 'px';
-			if(isSafari) right.style.width = width - style.get_outter_width(left, 'width') + 'px';
+			if(isSafari) right.style.width = width - (isSafari&&14) - style.get_outter_width(left, 'width') + 'px';
 			menu.style.height = height +
 				- (css1compat&&(style.get(menu, 'border-top-width', true) + style.get(menu, 'border-bottom-width', true)))
+				- (css1compat&&(style.get(left, 'border-top-width', true) + style.get(left, 'border-bottom-width', true)))
+				- (css1compat&&(style.get(left, 'padding-top', true)*2))
+				- (css1compat&&(style.get(menu, 'padding-top', true)*2)) - 10 - (css1compat&&2)
 				+ 'px';
-			main.style.height = winHeight = height + 'px';
+			main.style.height = winHeight = height - 18 + (isIE6&&4) + 4 - (isIE6&&4) + 'px';
 			resizebar.style.height = parseInt(winHeight) + 2 + 'px';
 			
 			resize_menu_height(now_menu, false);
 			if(isIE){
-				main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width)
+				main.style.width = winWidth = (css1compat && width || body && body['clientWidth'] || width) -18
 					- style.get_outter_width(left, 'width') + 'px';
 			}
 			preventDefault(e);
-			if(e.type==='load') menu.children[0].children[0].click();
+			if(e.type==='load'){
+				//menu.children[0].children[0].click();
+				if(menu.children[0].children[0].click){
+					menu.children[0].children[0].click();
+				}else{
+					menu.children[0].children[0].onclick();
+				}
+			}
 		};
 		///}}}
 
