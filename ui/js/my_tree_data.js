@@ -46,9 +46,11 @@ var data = {
 				name: '个人博客、社区',
 				data:{
 					Cnblogs:{ name:'博客园', url:'http://www.cnblogs.com', item:1 },
+					DaQianDuan:{ name:'大前端', url:'http://www.daqianduan.com/', item:1 },
 					'36KR':{ name:'36kr', url:'http://www.36kr.com/', item:1 },
 					LampBlog:{ name:'Lamp Blog', url:'http://www.lampblog.net/ubuntu/find%E5%91%BD%E4%BB%A4/', item:1 },
 					CoolShell:{ name:'酷壳', url:'http://coolshell.cn/', item:1 },
+					DivCss:{ name:'DivCSS', url:'http://www.divcss5.com/', item:1 },
 					W3cplus:{ name:'w3cplus', url:'http://www.w3cplus.com/', item:1 },
 					Berlinix:{ name:'berlinix', url:'http://www.berlinix.com/', item:1 },
 					'51CTO':{ name:'51CTO', url:'http://www.51cto.com', item:1 },
@@ -255,6 +257,19 @@ var data = {
 				name: 'Share',
 				data: {
 					NodeJS:{ name: 'NodeJS官网', url: 'http://nodejs.org/', item: 1 }
+				}
+			}
+		}
+	},
+	//}}}
+	//{{{C&Cpp
+	C_CPP:{
+		name:'C&Cpp',
+		data:{
+			Share:{
+				name: 'Share',
+				data: {
+					NodeJS:{ name: '一分C++文档', url: 'http://classfoo.cn/foo/c++', item: 1 }
 				}
 			}
 		}
