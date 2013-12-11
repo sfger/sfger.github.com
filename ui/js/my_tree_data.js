@@ -223,7 +223,8 @@ var data = {
 					SeaJs:{ name: 'seajs', url: 'http://seajs.org/', item: 1 },
 					Qwrap:{ name: 'Qwrap', url: 'http://qwrap.com/', item: 1 },
 					WindJS:{ name: 'WindJS', url: 'http://windjs.org/cn/', item: 1 },
-					Impress:{ name: 'Impress', url: 'http://bartaz.github.io/impress.js/#/bored', item: 1 }
+					Impress:{ name: 'Impress', url: 'http://bartaz.github.io/impress.js/#/bored', item: 1 },
+					MessengerJS:{ name: 'MessengerJS', url: 'http://biqing.github.io/MessengerJS/', item: 1 }
 				}
 			},
 			Blog:{
