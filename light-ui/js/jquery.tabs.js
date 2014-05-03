@@ -109,6 +109,8 @@ $.fn.tabs=function(options){
 			if(index==this.headers.length-2) index++;
 			if(index<=this.userOptions.selected) this.userOptions.selected++;
 			if(op.select) this.select(index);
+			var box = this.render;
+			box.children[1].style.height = (box.parentNode.offsetHeight - box.children[0].offsetHeight - 1) + 'px';
 			return this;
 		},
 		close: function(index){
