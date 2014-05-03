@@ -23,12 +23,17 @@ $(function(){
 		onClick:function(e){
 			var option = this.option;
 			if(!leftMenu.isLeaf(this)) return false;
-			mainTab.add({
-				title:option.name,
-				content:'<iframe src="'+option.url+'" frameborder="0" style="height:100%;width:100%;display:block;"></iframe>',
-				closable:true,
-				select:true
-			});
+			if(option.url.slice(0, 8)==='https://'){
+				var win = window.open(option.url);
+				win.opener = null;
+			}else{
+				mainTab.add({
+					title:option.name,
+					content:'<iframe src="'+option.url+'" frameborder="0" style="height:100%;width:100%;display:block;"></iframe>',
+					closable:true,
+					select:true
+				});
+			}
 		},
 		onContextmenu:function(e){
 			if(e.altKey && leftMenu.isLeaf(this)){

@@ -338,7 +338,7 @@ $.fn.tree=function(options){
 			var method = 'hide';
 			$(folder.parentNode).removeClass('expanded').find('>a>.hit').removeClass('hit-open');
 			$(folder.nextSibling)[method](this.userOptions.animate.time);
-			this.contents.style.width = this.container.scrollWidth + 'px';
+			// this.contents.style.width = this.container.scrollWidth + 'px';
 			return this;
 		}
 	};
