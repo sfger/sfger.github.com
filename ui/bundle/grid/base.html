@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="UTF-8" />
+	<title>HMLT</title>
+	<!-- <link rel="shortcut icon" href="./favicon.ico" /> -->
+	<!-- <link rel="stylesheet" href="FF.css" /> -->
+	<style type="text/css" media="all">
+	* { padding:0; margin:0; }
+	.data-table {border:1px solid #ccc;border-collapse:collapse;}
+	.data-table td {line-height:20px;+line-height:18px;color:#333;border:1px solid #ccc;padding:2px 0px;white-space:nowrap;padding:1px 3px;}
+	.data-table .thead td {color:#666;background:#f4f4f4;text-align:center;font-weight:bold;}
+	</style>
+</head>
+<body>
+<div id="page">
+</div><!-- #page end! -->
+<script type="text/javascript" src="../../js/jquery.min.js"></script>
+<script type="text/javascript" src="./grid.js"></script>
+<script type="text/javascript" src="../../js/util.js"></script>
+<script type="text/javascript" charset="utf-8">
+//<![CDATA[
+"use strict";
+var data = (function(){
+	var ret = new Array(365);
+	for(var i=0, rl=ret.length; i<rl; i++){
+		ret[i] = new Array(26);
+		for(var j=0, cl=ret[i].length; j<cl; j++){
+			ret[i][j] = 'row:' + (i+1) + ' col:' + (j+1);
+		}
+	}
+	return ret;
+})();
+var head = [];
+// var stime = (new Date()).getTime();
+var datagrid = $(get_table_content(data));
+$('#page').append(datagrid);
+resize_frozen_table(datagrid.find('table'), {'1':200, '5':200});
+// var etime = (new Date()).getTime();
+// alert(etime - stime);
+//]]>
+</script>
+</body>
+</html>
