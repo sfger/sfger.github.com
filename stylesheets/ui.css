@@ -7,7 +7,7 @@ html, body{overflow:hidden;}
 .layout-middle-container .layout-west, .layout-middle-container .bar-west{float:left;}
 .layout-middle-container .layout-east, .layout-middle-container .bar-east{float:right;}
 .layout-west, .layout-east, .layout-center{overflow:auto;}
-.resize-bar{background:#cecece;overflow:hidden;cursor:n-resize;text-align:center;}
+.resize-bar{background:#cecece;overflow:hidden;/*cursor:n-resize;*/text-align:center;}
 .bar-west, .bar-east{cursor:e-resize;}
 .layout-middle-container>div{height:100%;}
 .resize-bar span{background:#333;height:100%;width:21px;display:block;overflow:hidden;margin:auto;cursor:pointer;}
