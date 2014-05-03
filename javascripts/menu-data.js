@@ -271,14 +271,6 @@ var data = [
 				]
 			}
 		]
-	},
-	//}}}
-	//UI{{{
-	{
-		name:'UI',
-		children:[
-			{name: 'popup', url: './ui/bundle/popup/popup.html'}
-		]
 	}
 	//}}}
 ];
