@@ -4,7 +4,7 @@ $('#page').layout({
 		toggle:true,
 		resize:true,
 		each:{
-			north:{toggle:false, resize:true},
+			north:{toggle:false, resize:false},
 			south:{toggle:false, resize:false},
 			west:{toggle:true, resize:true },
 			east:{toggle:false, resize:false }
