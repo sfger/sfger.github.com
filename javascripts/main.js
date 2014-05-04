@@ -32,7 +32,7 @@ $(function(){
 					content:'<iframe src="'+option.url+'" frameborder="0" style="height:100%;width:100%;display:block;"></iframe>',
 					closable:true,
 					select:true
-				}, 1);
+				});
 			}
 		},
 		onContextmenu:function(e){
