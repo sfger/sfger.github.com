@@ -106,7 +106,6 @@ $.fn.tabs=function(options){
 			}
 			this.headers = list2Array(render.children[0].children);
 			this.panels = list2Array(render.children[1].children);
-			if(index==this.headers.length-2) index++;
 			if(index<=this.userOptions.selected) this.userOptions.selected++;
 			if(op.select) this.select(index);
 			var box = this.render;

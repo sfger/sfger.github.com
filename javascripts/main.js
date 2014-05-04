@@ -32,12 +32,11 @@ $(function(){
 					content:'<iframe src="'+option.url+'" frameborder="0" style="height:100%;width:100%;display:block;"></iframe>',
 					closable:true,
 					select:true
-				});
+				}, 1);
 			}
 		},
 		onContextmenu:function(e){
 			if(e.altKey && leftMenu.isLeaf(this)){
-				console.log(1);
 				try{
 					var win = window.open(this.option.url);
 					win.opener = null;
