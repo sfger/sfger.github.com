@@ -1,0 +1,1 @@
+define(function(t,e,n){var o={create:function(e){document.title="Share From Water",t(["sfger/tpl/index.tpl"],function(t){new EJS({text:t["index.tpl"]}).update(e.app.root,{data:{__version__:__version__}}),e.next()})},destroy:function(){}};n.exports=o});

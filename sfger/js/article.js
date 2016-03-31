@@ -1,0 +1,1 @@
+define(function(t,e,n){var a={create:function(t){document.title="Article list",new EJS({text:'<a href="#/article/test">test</a>'}).update(t.app.root,{data:{}}),t.next()},destroy:function(){}};n.exports=a});
