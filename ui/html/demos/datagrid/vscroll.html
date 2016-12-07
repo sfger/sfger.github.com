@@ -1,9 +1,8 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>Title</title><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black" /><meta name="format-detection" content="telephone=no" /><meta name="author" content="" /><meta name="revisit-after" content="1 days" /><meta name="keywords" content="" /><meta name="description" content="" /><link rel="icon" href="../../../../favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="../../../../favicon.ico" type="image/x-icon" /><link rel="stylesheet" type="text/css" href="../../../css/datagrid.css?201608161717" /><style type="text/css" media="all">*{padding:0;margin:0;font-size:14px;}
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>Title</title><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black" /><meta name="format-detection" content="telephone=no" /><meta name="author" content="" /><meta name="revisit-after" content="1 days" /><meta name="keywords" content="" /><meta name="description" content="" /><link rel="stylesheet" type="text/css" href="../../../css/datagrid.css?201612071619" /><style type="text/css" media="all">*{padding:0;margin:0;font-size:14px;}
 #my_datagrid{width:auto;_width:100%;border:1px solid green;}
-.datagrid-ctn .body-wrapper{max-height:320px;overflow:auto;}
-//.datagrid-ctn .body-wrapper .cell{padding:0 10px;text-align:right;}
+.datagrid-ctn .body-wrapper{max-height:304px;}
 .warn{color:#ff0101;}
-.normal{color:#008f1f;}</style></head><body><div id="page"><div id="my_datagrid"></div></div><!-- #page end! --><script id="requirejs" data-version="201608161717" src="../../../../public/js/require.js?201608161717"></script><script>require.config({
+.normal{color:#008f1f;}</style></head><body><div id="page"><div id="my_datagrid"></div></div><!-- #page end! --><script id="requirejs" data-version="201612071619" src="../../../../public/js/require.js?201612071619"></script><script>require.config({
 baseUrl:'../../../../',
 urlArgs:document.getElementById("requirejs").getAttribute("data-version"),
 map:{"*":{css:"require-css"}},
@@ -11,7 +10,6 @@ paths:{
 jquery:'public/js/jquery'
 },
 shim:{
-'jquery': ['public/js/es5-shim', 'public/js/es5-shim'],
 'ui/js/jquery-datagrid': ['jquery']
 }
 });
@@ -40,22 +38,21 @@ rowNum        : true,
 autoRowHeight : true,
 autoColWidth  : true,
 /* sortable      : true, */
-sort          : {field : 'col-2', order : 'desc'},
+sort          : {field:'col-2', order:'desc'},
 /* dataType      : 'number', */
 width         : 200,
 /* remoteSort    : true, */
+triggerRow    : true,
 frozenColumns : [
 [
 {name:'冻结列', colspan:4}
 ],
-/*
 [
 {name:'冻结列组1', colspan:2},
 {name:'冻结列组2', colspan:2},
 ],
-*/
 [
-{field:'col-1', name:'冻结第一列', sortable: true, sortable: true, // dataType: 'number', // 'string',
+{field:'col-1', name:'冻结第一列', sortable:true, sortable:true, // dataType: 'number', // 'string',
 formatter:function(val, row, key){
 return '格式化: ' + (Math.random()>0.5 ? '<br />' : '') + val;
 }
@@ -72,7 +69,7 @@ return '<span class="'+cls+'">' + val + '</span>';
 ],
 columns:[
 [
-{field:'col-5', rowspan:3},
+{field:'col-5', sortable:true, rowspan:3},
 {name:'非冻结列', colspan:30}
 ],
 [
@@ -112,8 +109,7 @@ columns:[
 {field:'col-35'}
 ]
 ],
-onCreate:function(){
-}
+onCreate:function(){}
 };
 window.$grid = $('#my_datagrid');
 $grid.datagrid(options);
@@ -122,7 +118,7 @@ setInterval(function(){
 $grid.datagrid('update', {data:gen_data()});
 setTimeout(function(){
 $grid.datagrid('sortBy', {field : 'col-2', order : 'asc'});
-}, 3000);
 }, 5000);
+}, 10000);
 */
 });</script></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>Title</title><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black" /><meta name="format-detection" content="telephone=no" /><meta name="author" content="" /><meta name="revisit-after" content="1 days" /><meta name="keywords" content="" /><meta name="description" content="" /><link rel="icon" href="../../../../favicon.ico" type="image/x-icon" /><link rel="shortcut icon" href="../../../../favicon.ico" type="image/x-icon" /><link rel="stylesheet" type="text/css" href="../../../css/menu.css?201608161717" /><style type="text/css" media="all">html{font-size:12px;}</style></head><body><div id="page"><h2>页面点击右键查看菜单</h2><div id="my_menu"></div></div><!-- #page end! --><script id="requirejs" data-version="201608161717" src="../../../../public/js/require.js?201608161717"></script><script>require.config({
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8" /><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /><title>Title</title><meta name="apple-mobile-web-app-capable" content="yes" /><meta name="apple-mobile-web-app-status-bar-style" content="black" /><meta name="format-detection" content="telephone=no" /><meta name="author" content="" /><meta name="revisit-after" content="1 days" /><meta name="keywords" content="" /><meta name="description" content="" /><link rel="stylesheet" type="text/css" href="../../../css/menu.css?201612071619" /><style type="text/css" media="all">html{font-size:12px;}</style></head><body><div id="page"><h2>页面点击右键查看菜单</h2><div id="my_menu"></div></div><!-- #page end! --><script id="requirejs" data-version="201612071619" src="../../../../public/js/require.js?201612071619"></script><script>require.config({
 baseUrl:'../../../../',
 urlArgs:"v=" + document.getElementById("requirejs").getAttribute("data-version"),
 map:{"*":{css:"require-css"}},
@@ -27,7 +27,7 @@ data:[
 }},
 {name:'user2', icon:'user', text:'用户2'},
 {name:'test2', text:'测试2', sub:{
-width: 300,
+/* width: 300, */
 data: [
 {name:'chart3', icon:'chart', text:'流量333333333333333333333333333333333333'},
 {name:'takein3', icon:'money', text:'收入3'},
@@ -42,14 +42,14 @@ data: [
 ];
 var $myMenu = $('#my_menu');
 $('#my_menu').menu({
-width: 100,
+/* width: 100, */
 autoHide: false,
 data: [
 {name:'chart', icon:'chart', text:'流量'},
 {name:'takein', icon:'money', text:'收入'},
 {name:'user', icon:'user', disabled:true, text:'用户'},
-{name:'sub', text:'Sub', sub:{
-width: 200,
+{name:'sub', text:'Sub222222222222222222222222222', sub:{
+/* width: 200, */
 data: menu_data
 }},
 {'class':'separate'},
